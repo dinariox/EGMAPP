@@ -3,7 +3,7 @@
     .profile-wrapper {
 
         width: 100%;
-        height: 386px;
+        height: 406px;
         background-color: #abc;
 
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
@@ -33,32 +33,32 @@
 
         position: absolute;
         top: 210px;
-        left: 50%;
-        transform: translateX(-50%);
         font-size: 14pt;
         font-weight: 500;
+        width: 100%;
+        text-align: center;
 
     }
 
     .profile-email {
 
         position: absolute;
-        top: 240px;
-        left: 50%;
-        transform: translateX(-50%);
+        top: 248px;
         font-size: 11pt;
         font-weight: 200;
+        width: 100%;
+        text-align: center;
 
     }
 
     .profile-stufe {
 
         position: absolute;
-        top: 262px;
-        left: 50%;
-        transform: translateX(-50%);
+        top: 270px;
         font-size: 11pt;
         font-weight: 200;
+        width: 100%;
+        text-align: center;
 
     }
 
@@ -70,6 +70,8 @@
         font-size: 11pt;
         font-weight: 200;
 
+        color: #888;
+
     }
 
     .profile-reset-wrapper {
@@ -77,7 +79,7 @@
         display: flex;
 
         position: absolute;
-        top: 310px;
+        top: 324px;
 
         width: calc(100% - 32px);
         padding: 0 16px;
@@ -90,7 +92,7 @@
         display: flex;
 
         position: absolute;
-        top: 370px;
+        top: 384px;
 
         width: calc(100% - 32px);
         padding: 0 16px;
@@ -107,6 +109,14 @@
     .profile-btn-right {
 
         width: 48%;
+
+    }
+
+
+    .smallerMargin {
+
+        margin-top: 0;
+        padding-top: 0;
 
     }
 
@@ -170,22 +180,25 @@
 
       </div>
 
+    <p class="sub-title">
+        Allgemein
+    </p>
 
-    <f7-list>
+    <f7-list class="smallerMargin">
 
-      <f7-list-item title="Benachrichtigungen (In späteren Updates verfügbar)">
-        <span slot="after"><f7-input type="switch" @change="" disabled></f7-input></span>
-      </f7-list-item>
+        <f7-list-item title="Benachrichtigungen (In späteren Updates verfügbar)">
+            <span slot="after"><f7-input type="switch" @change="" disabled></f7-input></span>
+        </f7-list-item>
 
-      <f7-list-item title="Textgröße in Artikeln (Klein / Groß)">
-        <span slot="after"><f7-input :checked="bigtextState" type="switch" @change="onBigtextChange()"></f7-input></span>
-      </f7-list-item>
+        <f7-list-item title="Textgröße in Artikeln (Klein / Groß)">
+            <span slot="after"><f7-input :checked="bigtextState" type="switch" @change="onBigtextChange()"></f7-input></span>
+        </f7-list-item>
 
     </f7-list>
 
-    <f7-button color="red" v-on:click="openSupport()">Support</f7-button>
-    <f7-button v-on:click="openBugreport()">Fehler melden</f7-button>
+    <f7-button color="red" v-on:click="openSupport()">Support / Fehler melden</f7-button>
     <f7-button v-on:click="openChangelog()">Changelog</f7-button>
+    <f7-button v-on:click="openPlannedFeatures()">Geplante Features</f7-button>
 
     <br />
     <br />
@@ -201,8 +214,10 @@ import xhr from 'xhr'
 export default {
   data: function () {
     var items = []
+    var itemsPF = []
     var bigtextState = false
     var changelogFinishedLoading = false
+    var plannedFeaturesFinishedLoading = false
     var supportEmail = 'support.app@ev-g-m.de'
     var userFirstname = ''
     var userLastname = ''
@@ -210,14 +225,17 @@ export default {
     var userStufenkey = ''
     var userStufe = ''
     this.addNewItem()
+    this.addNewItemPlanned()
     this.checkSettings()
     this.getUserInfo()
     return {
       items: items,
+      itemsPF: itemsPF,
       bigtextState: bigtextState,
       cancelicon: require('../images/ic_cancel_black_24dp.png'),
       supportEmail: supportEmail,
       changelogFinishedLoading: changelogFinishedLoading,
+      plannedFeaturesFinishedLoading: plannedFeaturesFinishedLoading,
       userFirstname: userFirstname,
       userLastname: userLastname,
       userEmail: userEmail,
@@ -249,10 +267,28 @@ export default {
       })
     },
 
+    addNewItemPlanned: function () {
+      var self = this
+      this.$root.db('plannedFeatures').once('value').then(function (snapshot) {
+        var mitteilungen = snapshot.val()
+        self.itemsPF = []
+        var cnt = 1
+        var menge = mitteilungen.length
+
+        while (cnt < menge) {
+          self.itemsPF.push({
+            feature: mitteilungen[cnt]
+          })
+          cnt++
+        }
+
+        self.plannedFeaturesFinishedLoading = true
+      })
+    },
+
     getUserInfo: function () {
       var self = this
       this.appVersion = window.sessionStorage.getItem('appVersion')
-      console.log(this.appVersion)
       this.$root.db('users/' + this.$root.user.uid).once('value').then(function (snapshot) {
         var userStats = snapshot.val()
 
@@ -510,6 +546,53 @@ export default {
 
       myApp.popup(popupHTML)
     },
+
+    openPlannedFeatures: function () {
+      var myApp = window.f7
+      var popupHTML = `<div class="popup">
+
+                  <div class="popup-inner">
+
+                      <div class='popup-top'>
+
+                          <p class='popup-title'>
+
+                              Geplante Features
+
+                          </p>
+
+                          <p><a href="#" class="popup-close close-popup"><i class="material-icons">close</i></a></p>
+
+                      </div>
+
+                      <p class='popup-text'>
+
+                          <ul>
+
+
+          `
+
+      while (this.plannedFeaturesFinishedLoading !== true) {
+
+      }
+
+      var i = this.itemsPF.length - 1
+      while (i >= 0) {
+        popupHTML += '<li><b>' + this.itemsPF[i].feature + '</b></li>'
+        i--
+      }
+
+      popupHTML += `</ul></p>
+
+                        </div>
+
+                      </div>
+
+                    `
+
+      myApp.popup(popupHTML)
+    },
+
     openSupport: function () {
       var myApp = window.f7
       var popupHTML = `
@@ -522,7 +605,7 @@ export default {
 
                         <p class='popup-title'>
 
-                            Support
+                            Support / Fehler melden
 
                         </p>
 
@@ -531,42 +614,10 @@ export default {
                     </div>
 
                     <p class='popup-text'>
-                        Wenn du ein Problem mit der App hast, kannst du uns eine Email an folgende Adresse schreiben: <br /><b>` + this.supportEmail + `</b>
+                        Wenn du ein Problem mit der App hast oder du einen Fehler gefunden hast, kannst du uns eine Email an folgende Adresse schreiben: <br /><b>` + this.supportEmail + `</b>
                     </p>
 
                 </div>
-
-            </div>
-
-          `
-
-      myApp.popup(popupHTML)
-    },
-    openBugreport: function () {
-      var myApp = window.f7
-      var popupHTML = `
-
-          <div class="popup">
-
-              <div class="popup-inner">
-
-                  <div class='popup-top'>
-
-                      <p class='popup-title'>
-
-                          Fehler melden
-
-                      </p>
-
-                      <p><a href="#" class="popup-close close-popup"><i class="material-icons">close</i></a></p>
-
-                  </div>
-
-                  <p class='popup-text'>
-                      Wenn du einen Fehler in der App gefunden hast, kannst du uns eine Email an folgende Adresse schreiben: <br /><b>` + this.supportEmail + `</b>
-                  </p>
-
-              </div>
 
             </div>
 

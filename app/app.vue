@@ -344,7 +344,7 @@ export default {
     },
 
     checkAppVersion: function () {
-      var CURRENT_APP_VERSION = '1.3.4'
+      var CURRENT_APP_VERSION = '1.4.2'
       window.sessionStorage.setItem('appVersion', CURRENT_APP_VERSION)
 
       this.appVersion = CURRENT_APP_VERSION

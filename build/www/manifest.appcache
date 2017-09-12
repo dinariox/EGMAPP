@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#ver:v1.3.4
+#ver:v1.4.2
 #plugin:4.8.3
 
 CACHE:
@@ -20,10 +20,10 @@ CACHE:
 /img/screenshot6.b5d9508.jpg
 /img/sponsor-egm.6b8c454.jpg
 /img/sponsor-lionsclub.af7b5a9.jpg
-/app.1597a32.js
-/init.1597a32.js
-/app.1597a32.css
-/init.1597a32.css
+/app.1f4e545.js
+/init.1f4e545.js
+/app.1f4e545.css
+/init.1f4e545.css
 /
 /offline-service-worker.js
 /manifest.json

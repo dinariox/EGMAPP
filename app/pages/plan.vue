@@ -1,3 +1,4 @@
+
 <template>
   <div data-page="plan" class="page toolbar-fixed kitchen-sink-material">
 
@@ -74,7 +75,21 @@ export default {
         var userId = this.$root.user.uid
         var stufe = await this.$root.db('/users/' + userId + '/stufe').once('value').then(function (snapshot) { return (snapshot.val()) })
         var plan = await this.$root.db('/vertretungsplan/' + day + '/' + stufe).once('value').then(function (snapshot) { return (snapshot.val()) })
+
+        // Zur Sicherheit als String und als Integer abfragen
+        if (stufe === '13' || stufe === 13) {
+          console.log('Stufe 13 (Lehrer)')
+
+          plan = ''
+
+          for (var i = 5; i <= 12; i++) {
+            plan += '<br /><h1 style="color: #25a69a;"><b>STUFE ' + i + '</b></h1>'
+            plan += await this.$root.db('/vertretungsplan/' + day + '/' + i).once('value').then(function (snapshot) { return (snapshot.val()) })
+          }
+        }
+
         this.$root.saveData('plan' + day, plan)
+
         switch (day) {
           case 'heute':
             this.planheute = plan
@@ -83,9 +98,10 @@ export default {
             this.planmorgen = plan
             break
         }
+
         return
       } catch (err) {
-        window.f7.alert('Ein Fehler ist aufgetreten!', 'Achtung!')
+        window.f7.alert('Ein Fehler ist aufgetreten!' + err, 'Fehler')
       }
     }
 
