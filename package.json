@@ -1,0 +1,35 @@
+{
+  "name": "EGM-App",
+  "version": "1.3.4",
+  "devDependencies": {
+    "app-framework": "^1.13.3",
+    "fetch": "^1.1.0",
+    "material-design-icons": "^3.0.1",
+    "pdfjs-dist": "^1.8.456",
+    "request": "^2.81.0",
+    "vue-pdf": "^1.2.2",
+    "xhr": "^2.4.0"
+  },
+  "scripts": {
+    "android": "node node_modules/app-framework/scripts/cordova --android",
+    "backup": "node node_modules/app-framework/scripts/backup",
+    "check": "node node_modules/app-framework/scripts/code-check",
+    "database": "node node_modules/app-framework/scripts/firebase --database",
+    "dev": "node node_modules/app-framework/scripts/dev",
+    "firebase": "node node_modules/app-framework/scripts/firebase --database --storage --hosting",
+    "fix": "node node_modules/app-framework/scripts/code-check --fix",
+    "ftp": "node node_modules/app-framework/scripts/ftp",
+    "hosting": "node node_modules/app-framework/scripts/firebase --hosting",
+    "icons": "node node_modules/app-framework/scripts/deprecated",
+    "ios": "node node_modules/app-framework/scripts/cordova --ios",
+    "major": "node node_modules/app-framework/scripts/build --major",
+    "minor": "node node_modules/app-framework/scripts/build --minor",
+    "patch": "node node_modules/app-framework/scripts/build --patch",
+    "reset-app": "node node_modules/app-framework/scripts/reset-app",
+    "snapshot": "node node_modules/app-framework/scripts/snapshot",
+    "storage": "node node_modules/app-framework/scripts/firebase --storage",
+    "studio": "node node_modules/app-framework/scripts/cordova --studio",
+    "xcode": "node node_modules/app-framework/scripts/cordova --xcode",
+    "zip": "node node_modules/app-framework/scripts/deprecated"
+  }
+}

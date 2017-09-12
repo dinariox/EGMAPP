@@ -1,0 +1,8 @@
+WICHTIG:
+
+Before Build:
+    - app.vue -> currentAppVersion updaten
+
+After Build:
+    - Apple Logo replace
+    - Changelog updaten! (Version muss mit aktueller AppVersion übereinstimmen)

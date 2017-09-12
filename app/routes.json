@@ -1,0 +1,50 @@
+[
+  {
+    "path": "/dieapp/",
+    "component": "dieapp.vue"
+  },
+  {
+    "path": "/einstellungen/",
+    "component": "einstellungen.vue"
+  },
+  {
+    "path": "/home/",
+    "component": "home.vue"
+  },
+  {
+    "path": "/impressum/",
+    "component": "impressum.vue"
+  },
+  {
+    "path": "/kalender/",
+    "component": "kalender.vue"
+  },
+  {
+    "path": "/mensa/",
+    "component": "mensa.vue"
+  },
+  {
+    "path": "/news/",
+    "component": "news.vue"
+  },
+  {
+    "path": "/plan/",
+    "component": "plan.vue"
+  },
+  {
+    "path": "/schulleitung/",
+    "component": "schulleitung.vue"
+  },
+  {
+    "path": "/sharens/",
+    "component": "sharens.vue"
+  },
+  {
+    "path": "/sv/",
+    "component": "sv.vue"
+  },
+  {
+    "path": "/ueberuns/",
+    "component": "ueberuns.vue"
+  }
+]

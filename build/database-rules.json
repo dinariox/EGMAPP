@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "users": {
+      ".read": true,
+      ".write": false
+    },
+    "vertretungsplan": {
+      ".read": true
+    },
+    "changelog": {
+      ".read": true
+    }
+  }
+}
