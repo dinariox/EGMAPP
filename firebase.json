@@ -12,12 +12,16 @@
         "destination": "/index.html"
       }
     ],
-    "headers": [ {
-        "source" : "**/*.@(css|js|html)",
-        "headers" : [ {
-            "key" : "Cache-Control",
-            "value" : "max-age=30"
-        } ]
-    } ]
+    "headers": [
+      {
+        "source": "**/*.@(css|js|html)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=30"
+          }
+        ]
+      }
+    ]
   }
 }

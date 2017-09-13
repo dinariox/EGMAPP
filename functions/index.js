@@ -31,7 +31,7 @@ app.post('/planupload', function(request, response){
 	var myplan = request.files.plan.data.toString();
 	var myplan2 = request.files.plan2.data.toString();
 
-	var nofree = "<p align=\"left\"><h1><strong>Keine Freistunden/Vertretung!</strong></h1></p>";
+	var nofree = "<p align=\"left\"><h2><strong>Keine Freistunden/Vertretung!</strong></h2></p>";
 	var fuenf = "Klasse: 05";
 	var sechs = "Klasse: 06";
 	var sieben = "Klasse: 07";
@@ -60,12 +60,14 @@ app.post('/planupload', function(request, response){
 	var xq1 = "XQ1";
 	var xq2 = "XQ2";
 	var zk = "ZK1Q2";
-	var bezeichnungen = [fuenf, sechs, sieben, acht, neun, ef, foe6, foe7, foe8, lfs6, lfs7, lfs8, lfs9, q1, q2, r7, r8, r9, sef, sq1, sq2, th1, th2, w5foe, xef, xq1, xq2, zk];
+	var fwe6 = "Kopplung/Kurs: FWE6";
+	var di8 = "Kopplung/Kurs: 8DI1";
+	var bezeichnungen = [fuenf, sechs, sieben, acht, neun, ef, foe6, foe7, foe8, lfs6, lfs7, lfs8, lfs9, q1, q2, r7, r8, r9, sef, sq1, sq2, th1, th2, w5foe, xef, xq1, xq2, zk, fwe6, di8];
 	var updates = {};
 
 	function setzeplan(privateplan, day){
 
-		var vertretungsplaene = new Array(28);
+		var vertretungsplaene = new Array(30);
 		var positionen = [];
 
 		bezeichnungen.forEach(function(name){
@@ -92,13 +94,13 @@ app.post('/planupload', function(request, response){
 		});
 
 		var vertfuenf = vertretungsplaene[0].Plan;
-		var vertsechs = vertretungsplaene[1].Plan.concat(vertretungsplaene[6].Plan, vertretungsplaene[9].Plan);
+		var vertsechs = vertretungsplaene[1].Plan.concat(vertretungsplaene[6].Plan, vertretungsplaene[9].Plan, vertretungsplaene[28].Plan);
 		var vertsieben = vertretungsplaene[2].Plan.concat(vertretungsplaene[7].Plan, vertretungsplaene[10].Plan, vertretungsplaene[15].Plan);
-		var vertacht = vertretungsplaene[3].Plan.concat(vertretungsplaene[8].Plan, vertretungsplaene[11].Plan, vertretungsplaene[16].Plan);
+		var vertacht = vertretungsplaene[3].Plan.concat(vertretungsplaene[8].Plan, vertretungsplaene[11].Plan, vertretungsplaene[16].Plan, vertretungsplaene[29].Plan);
 		var vertneun = vertretungsplaene[4].Plan.concat(vertretungsplaene[12].Plan, vertretungsplaene[17].Plan);
 		var vertef = vertretungsplaene[5].Plan.concat(vertretungsplaene[18].Plan, vertretungsplaene[24].Plan);
 		var vertq1 = vertretungsplaene[13].Plan.concat(vertretungsplaene[19].Plan, vertretungsplaene[25].Plan);
-		var vertq2 = vertretungsplaene[14].Plan.concat(vertretungsplaene[20].Plan, vertretungsplaene[26].Plan, vertretungsplaene[27]);
+		var vertq2 = vertretungsplaene[14].Plan.concat(vertretungsplaene[20].Plan, vertretungsplaene[26].Plan, vertretungsplaene[27].Plan);
 		var plaenepost = [vertfuenf, vertsechs, vertsieben, vertacht, vertneun, vertef, vertq1, vertq2];
 
 		plaenepost.forEach(function(name, index){
@@ -107,7 +109,7 @@ app.post('/planupload', function(request, response){
 			}
 		});
 
-	  updates['/vertretungsplan/' + day + '/5'] = plaenepost[0];
+	    updates['/vertretungsplan/' + day + '/5'] = plaenepost[0];
 		updates['/vertretungsplan/' + day + '/6'] = plaenepost[1];
 		updates['/vertretungsplan/' + day + '/7'] = plaenepost[2];
 		updates['/vertretungsplan/' + day + '/8'] = plaenepost[3];
@@ -151,7 +153,7 @@ exports.egmapp = functions.https.onRequest(app);
 
 exports.cleanupUserData = functions.auth.user().onDelete(event => {
   const uid = event.data.uid;
-  return admin.database().ref(`/users/${uid}`).remove();
+  return admin.database().ref(`/users/${uid}`).remove(), admin.database().ref(`/settings/${uid}`).remove();
 });
 
 

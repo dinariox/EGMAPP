@@ -412,6 +412,7 @@ export default {
             this.loggedin = false
             this.$root.removeData('planheute')
             this.$root.removeData('planmorgen')
+            window.location.reload()
           })
     },
     checkstufenpass: function (mystufenkey) {
