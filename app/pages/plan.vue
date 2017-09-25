@@ -74,7 +74,8 @@ export default {
       try {
         var userId = this.$root.user.uid
         var stufe = await this.$root.db('/users/' + userId + '/stufe').once('value').then(function (snapshot) { return (snapshot.val()) })
-        var plan = await this.$root.db('/vertretungsplan/' + day + '/' + stufe).once('value').then(function (snapshot) { return (snapshot.val()) })
+        var plan = '<h1 style="color: #25a69a;"><b>STUFE ' + stufe + '</b></h1>'
+        plan += await this.$root.db('/vertretungsplan/' + day + '/' + stufe).once('value').then(function (snapshot) { return (snapshot.val()) })
 
         // Zur Sicherheit als String und als Integer abfragen
         if (stufe === '13' || stufe === 13) {

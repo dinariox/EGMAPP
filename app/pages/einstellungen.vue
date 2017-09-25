@@ -161,7 +161,7 @@
         </p>
 
         <p class="profile-stufe">
-            Stufe {{userStufe}} <span v-if="userStufe==13">(Lehrer)</span>
+            <span v-if="userStufe!=13">Stufe {{userStufe}}</span><span v-if="userStufe==13">Lehrerkonto</span>
         </p>
 
         <div class="profile-reset-wrapper">
@@ -615,6 +615,8 @@ export default {
 
                     <p class='popup-text'>
                         Wenn du ein Problem mit der App hast oder du einen Fehler gefunden hast, kannst du uns eine Email an folgende Adresse schreiben: <br /><b>` + this.supportEmail + `</b>
+                        <br /><br />
+                        <a style="padding: 12px 16px; color: white; background-color: #444; border-radius: 3px;" onclick="window.location.href = 'mailto:support.app@ev-g-m.de'">Email schicken</a>
                     </p>
 
                 </div>
@@ -625,6 +627,7 @@ export default {
 
       myApp.popup(popupHTML)
     }
+
   }
 }
   </script>

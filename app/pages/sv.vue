@@ -61,6 +61,137 @@
 
     }
 
+    #sv1-img {
+
+        height: 120px;
+        width: 120px;
+
+        object-fit: cover;
+
+        border-radius: 50%;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #ccc;
+
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+
+    }
+
+    #sv1-name {
+
+        position: relative;
+        top: 190px;
+        font-size: 14pt;
+        font-weight: 500;
+        width: 100%;
+        text-align: center;
+
+    }
+
+    #sv1-rank {
+
+        position: relative;
+        top: 174px;
+        font-size: 11pt;
+        font-weight: 200;
+        width: 100%;
+        text-align: center;
+
+    }
+
+    #sv2-img {
+
+        height: 120px;
+        width: 120px;
+
+        object-fit: cover;
+
+        border-radius: 50%;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #ccc;
+
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+
+    }
+
+    #sv2-name {
+
+        position: relative;
+        top: 190px;
+        font-size: 14pt;
+        font-weight: 500;
+        width: 100%;
+        text-align: center;
+
+    }
+
+    #sv2-rank {
+
+        position: relative;
+        top: 174px;
+        font-size: 11pt;
+        font-weight: 200;
+        width: 100%;
+        text-align: center;
+
+    }
+
+    #sv2 {
+
+        position: absolute;
+        left: 50%;
+        width: 50%;
+
+    }
+
+    #sv1 {
+
+        position: absolute;
+        width: 50%;
+        left: 0;
+
+    }
+
+    #sv-wrapper {
+
+        width: 100%;
+        height: 320px;
+
+    }
+
+    #sv-img {
+
+        width: 100%;
+        height: 220px;
+
+        object-fit: cover;
+        object-position: center;
+
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+
+    }
+
+    @media only screen and (min-width: 1000px) {
+
+        #sv-img {
+
+            height: 360px;
+
+        }
+
+    }
+
 </style>
 
 
@@ -83,6 +214,48 @@
             </f7-nav-left>
             <f7-nav-center sliding>SV</f7-nav-center>
         </f7-navbar>
+
+
+        <div class="list-block accordion-list">
+            <ul>
+                <li class="accordion-item"><a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                        <div class="item-title">Das SV-Team</div>
+                    </div></a>
+                    <div class="accordion-item-content">
+                        <div class="content-block">
+
+                            <img id="sv-img" src="../images/SV-Team.jpg">
+
+                            <div id="sv-wrapper">
+
+                                <div id="sv1">
+                                    <img id="sv1-img">
+                                    <p id="sv1-name">
+                                        Paul Handke
+                                    </p>
+
+                                    <p id="sv1-rank">
+                                        Q1 | Schülersprecher
+                                    </p>
+                                </div>
+
+                                <div id="sv2">
+                                    <img id="sv2-img">
+                                    <p id="sv2-name">
+                                        Paul Theobald
+                                    </p>
+
+                                    <p id="sv2-rank">
+                                        Q1 | Schülersprecher
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
 
         <p class="sub-title">

@@ -53,11 +53,112 @@
 
     }
 
-    .text-p {
+    #dombro-img {
 
-        padding-right: 8px;
-        max-height: 70px;
-        overflow-y: hidden;
+        height: 120px;
+        width: 120px;
+
+        object-fit: cover;
+
+        border-radius: 50%;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #ccc;
+
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+
+    }
+
+    #dombro-name {
+
+        position: relative;
+        top: 190px;
+        font-size: 14pt;
+        font-weight: 500;
+        width: 100%;
+        text-align: center;
+
+    }
+
+    #dombro-rank {
+
+        position: relative;
+        top: 174px;
+        font-size: 11pt;
+        font-weight: 200;
+        width: 100%;
+        text-align: center;
+
+    }
+
+    #kessler-img {
+
+        height: 120px;
+        width: 120px;
+
+        object-fit: cover;
+
+        border-radius: 50%;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #ccc;
+
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+
+    }
+
+    #kessler-name {
+
+        position: relative;
+        top: 190px;
+        font-size: 14pt;
+        font-weight: 500;
+        width: 100%;
+        text-align: center;
+
+    }
+
+    #kessler-rank {
+
+        position: relative;
+        top: 174px;
+        font-size: 11pt;
+        font-weight: 200;
+        width: 100%;
+        text-align: center;
+
+    }
+
+    #kessler {
+
+        position: absolute;
+        left: 50%;
+        width: 50%;
+
+    }
+
+    #dombro {
+
+        position: absolute;
+        width: 50%;
+        left: 0;
+
+    }
+
+    #schulleitung-wrapper {
+
+        width: 100%;
+        height: 320px;
 
     }
 
@@ -85,9 +186,49 @@
         </f7-navbar>
 
 
+        <div class="list-block accordion-list">
+            <ul>
+                <li class="accordion-item"><a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                        <div class="item-title">Über die Schulleitung</div>
+                    </div></a>
+                    <div class="accordion-item-content">
+                        <div class="content-block">
+                            <div id="schulleitung-wrapper">
+
+                                <div id="dombro">
+                                    <img id="dombro-img" src="../images/dombrowski.jpg">
+                                    <p id="dombro-name">
+                                        Sven Dombrowski
+                                    </p>
+
+                                    <p id="dombro-rank">
+                                        Schulleiter
+                                    </p>
+                                </div>
+
+                                <div id="kessler">
+                                    <img id="kessler-img" src="../images/kessler.jpg">
+                                    <p id="kessler-name">
+                                        Eckhard Kessler
+                                    </p>
+
+                                    <p id="kessler-rank">
+                                        Stellv. chulleiter
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
         <p class="sub-title">
             Mitteilungen der Schulleitung
         </p>
+
 
 
         <f7-list class="big-list">

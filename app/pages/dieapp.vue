@@ -277,9 +277,8 @@
 
 
       <f7-button big raised color="green" filled @click="gotoYouTube()">Video Tutorials</f7-button>
-      <p>
-          Alternativ: <a href="http://bit.ly/MedienteamYT" target="_blank">http://bit.ly/MedienteamYT</a>
-      </p>
+
+      <br /><br />
 
 
 

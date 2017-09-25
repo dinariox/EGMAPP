@@ -6,11 +6,7 @@
 
     }
 
-    .text-padding {
 
-        padding: 0 16px;
-
-    }
 
 
 </style>
@@ -36,10 +32,10 @@
         <f7-nav-center sliding>Impressum</f7-nav-center>
       </f7-navbar>
 
-      <p class="sub-title">
+        <p class="sub-title">
           Angaben gemäß § 5 TMG
-      </p>
-      <p class="impressum-text">
+        </p>
+        <p class="impressum-text">
 
             Evangelisches Gymnasium Meinerzhagen<br />
             Christoph-Friedrich-Baehrens-Straße <br />
@@ -52,7 +48,10 @@
             Zuständige Aufsichtsbehörde: Bezirksregierung Arnsberg<br />
             Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV<br />
             OStD i.K. S. Dombrowski
-      </p>
+        </p>
+
+        <f7-button @click="gotoHomepage()">Schulhomepage</f7-button>
+        <f7-button @click="writeEmail()">Email an Schulleitung</f7-button>
 
 
         <div class="list-block accordion-list">
@@ -154,3 +153,34 @@ Mehr Informationen zum Umgang mit Nutzerdaten bei Google Analytics finden Sie in
 
   </f7-page>
 </template>
+
+
+<script>
+
+    export default {
+
+      data: function () {
+        return {
+
+        }
+      },
+
+      mounted: function () {
+
+      },
+
+      methods: {
+
+        gotoHomepage: function () {
+          window.location.href = 'http://ev-g-m.de'
+        },
+
+        writeEmail: function () {
+          window.location.href = 'mailto:info@ev-g-m.de'
+        }
+
+      }
+
+    }
+
+</script>

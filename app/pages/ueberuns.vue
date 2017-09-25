@@ -6,7 +6,7 @@
         height: 220px;
 
         object-fit: cover;
-        object-position: center 20%;
+        object-position: center;
 
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
 
@@ -19,13 +19,6 @@
             height: 360px;
 
         }
-
-    }
-
-
-    .padding-text {
-
-        padding: 0 16px;
 
     }
 
@@ -77,14 +70,14 @@
       </f7-navbar>
 
 
-      <img id="team-img" src="../images/Medienteam.jpg">
+      <img id="team-img" src="../images/dasteam.jpg">
 
       <p class="sub-title">
           Über das EGM-Medienteam
       </p>
 
 
-      <p class="padding-text">
+      <p class="text-padding">
           Das EGM-Medienteam ist eine Gruppe von Schülern, die sich rund um das Entwerfen & Programmieren Deiner EGM-App und um Teile der Homepage kümmern.
           <br />
           Das Team ist Teil des EGM-Presseteams, welches auch der Initiator des App-Projekts gewesen ist.
@@ -104,56 +97,56 @@
                               <p class="sub-title">
                                   Paul Handke (Q1)
                               </p>
-                              <p class="padding-text">
+                              <p class="text-padding">
                                   Paul ist der allgemeine Organisator der App. Seit den Überlegungen einer möglichen EGM-App im Jahre 2015 ist er dabei. Er kümmert sich um alles Organisatorische, liefert Ideen und koordiniert,  was in die App hineinkommt, er ist Gründer und Leiter des Medienteams.
                               </p>
 
                               <p class="sub-title">
                                   Timo Nowak (Q1)
                               </p>
-                              <p class="padding-text">
+                              <p class="text-padding">
                                   Timo leitet die Programmierung der EGM-App. Er ist mit seinen Mitstreitern dafür verantwortlich, dass alle Ideen und Funktionsentwürfe perfekt in die App integriert werden. So konnten bereits viele Funktionen umgesetzt werden und das Projekt sehr erfolgreich vorangetrieben werden.
                               </p>
 
                               <p class="sub-title">
                                   Marvin Strangfeld (Abiturient)
                               </p>
-                              <p class="padding-text">
+                              <p class="text-padding">
                                   Marvin hat den Grundstein für die App gelegt. Nach Gesprächen und Planungen des Presseteams hat er die erste Version der App designt und programmiert. Wichtige Grundfunktionen wie den digitalen Vertretungsplan konnte er umsetzten.
                               </p>
 
                               <p class="sub-title">
                                   Leon Bromand (Q1)
                               </p>
-                              <p class="padding-text">
+                              <p class="text-padding">
                                   Leon hat als Redakteur des Teams mit Redaktionsarbeit zu tun. Er ist dafür zuständig, Funktionen der App mit Info-Texten und anderen Beiträgen lebendig zu machen. Darüber hinaus liefert er Unterstützung bei der Organisation.
                               </p>
 
                               <p class="sub-title">
                                   Ole Beckmann (Q1)
                               </p>
-                              <p class="padding-text">
+                              <p class="text-padding">
                                   Ole ist ebenfalls in der Redaktion der App aktiv. Er hat außerdem bei der Erstellung der verschiedenen Info-Clips mitgewirkt und kümmert sich jetzt mit um die Aktualisierung und Instandhaltung des Support-Bereichs der App.
                               </p>
 
                               <p class="sub-title">
                                   Julian Klose (Q1)
                               </p>
-                              <p class="padding-text">
+                              <p class="text-padding">
                                   Julian ist unser „Multifunktionswerkzeug“. Er hilft bei der Programmierung der App, ist für die Aktualisierung des mittleren Homepagebereichs verantwortlich und hilft auch in der Redaktion aus.
                               </p>
 
                               <p class="sub-title">
                                   Till Hammer (Q1)
                               </p>
-                              <p class="padding-text">
+                              <p class="text-padding">
                                   Till unterstützt Timo bei der Programmierung der App. Des Weiteren beschäftigt sich Till mit zusätzlichen noch folgenden Funktionen, die in Zukunft in die App integriert werden.
                               </p>
 
                               <p class="sub-title">
                                   Ben Leitzbach (Q1)
                               </p>
-                              <p class="padding-text">
+                              <p class="text-padding">
                                   Ben ist dafür verantwortlich, dass der mittlere Bereich der Homepage immer aktuell ist. Artikel des Presseteams und anderer schulischen Gruppen sind immer ohne großen Zeitverlust zwischen „Schreiben“ und „Erscheinen“ auf der Homepage.
                               </p>
                           </p>

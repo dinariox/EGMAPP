@@ -92,6 +92,12 @@
 
     }
 
+    .text-padding {
+
+        padding: 0 16px;
+
+    }
+
 </style>
 
 <template>
@@ -117,7 +123,7 @@
                 <f7-list-item link="/plan/" title="<i class='material-icons m-i'>list</i>&nbsp;&nbsp;&nbsp; Vertretungsplan" link-view="#main-view" link-close-panel></f7-list-item>
                 <f7-list-item link="/news/" title="<i class='material-icons m-i'>speaker_notes</i>&nbsp;&nbsp;&nbsp; News" link-view="#main-view" link-close-panel></f7-list-item>
                 <!-- <f7-list-item link="/kalender/" title="<i class='material-icons m-i'>today</i>&nbsp;&nbsp;&nbsp; Schulkalender" link-view="#main-view" link-close-panel></f7-list-item> -->
-                <f7-list-item title="<i class='material-icons m-i'>restaurant</i>&nbsp;&nbsp;&nbsp; Mensaplan" link-view="#main-view" link-close-panel @click="openMensa()"></f7-list-item>
+                <f7-list-item link="/mensa/" title="<i class='material-icons m-i'>restaurant</i>&nbsp;&nbsp;&nbsp; Mensa" link-view="#main-view" link-close-panel></f7-list-item>
 
                 <f7-list-item title="Schulbereiche" divider></f7-list-item>
 
@@ -344,7 +350,7 @@ export default {
     },
 
     checkAppVersion: function () {
-      var CURRENT_APP_VERSION = '1.4.2'
+      var CURRENT_APP_VERSION = '1.5.1'
       window.sessionStorage.setItem('appVersion', CURRENT_APP_VERSION)
 
       this.appVersion = CURRENT_APP_VERSION
@@ -523,20 +529,6 @@ export default {
               window.f7.alert(this.text.firebaseErrors[err.code], this.text.error)
             })
       }
-    },
-
-    openMensa: function () {
-      window.f7.showIndicator()
-      this.$root.store('Mensaplan/Speiseplan.png').getDownloadURL().then(function (url) {
-        var photoBrowserPage = window.f7.photoBrowser({
-          photos: {url},
-          type: 'popup',
-          ofText: 'von'
-        })
-        photoBrowserPage.open()
-      }).then(() => {
-        window.f7.hideIndicator()
-      })
     }
 
   }

@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#ver:v1.4.2
+#ver:v1.5.1
 #plugin:4.8.3
 
 CACHE:
@@ -7,10 +7,16 @@ CACHE:
 /fonts/MaterialIcons-Regular.a37b0c0.ttf
 /fonts/MaterialIcons-Regular.012cf6a.woff
 /fonts/MaterialIcons-Regular.570eb83.woff2
+/img/circle_event.3267b8e.png
+/img/circle_today.be4a2d8.png
 /img/i-f7-material.ccc2c70.png
 /img/ic_cancel_black_24dp.e34ff54.png
 /img/icon.393a6ba.png
-/img/Medienteam.e29b4ea.jpg
+/img/SV-Team.48f35f4.jpg
+/img/dasteam.f4fc623.jpg
+/img/dombrowski.4971065.jpg
+/img/kessler.b0be8f8.jpg
+/img/mensa-img.e71a7ba.jpg
 /img/profileimg.393a6ba.png
 /img/screenshot0.3a05fd9.jpg
 /img/screenshot2.6e4643b.jpg
@@ -20,10 +26,10 @@ CACHE:
 /img/screenshot6.b5d9508.jpg
 /img/sponsor-egm.6b8c454.jpg
 /img/sponsor-lionsclub.af7b5a9.jpg
-/app.1f4e545.js
-/init.1f4e545.js
-/app.1f4e545.css
-/init.1f4e545.css
+/app.c9f86fe.js
+/init.c9f86fe.js
+/app.c9f86fe.css
+/init.c9f86fe.css
 /
 /offline-service-worker.js
 /manifest.json
