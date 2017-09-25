@@ -53,6 +53,14 @@
 
     }
 
+    .text-p {
+
+        padding-right: 8px;
+        max-height: 70px;
+        overflow-y: hidden;
+
+    }
+
     #dombro-img {
 
         height: 120px;
@@ -60,12 +68,16 @@
 
         object-fit: cover;
 
-        border-radius: 50%;
+        /*border-radius: 50%;
         border-width: 5px;
         border-style: solid;
         border-color: #ccc;
 
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);*/
+
+        border-radius: 50%;
+        border: 5px solid #eee;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
 
         position: absolute;
         top: 60px;
@@ -103,12 +115,16 @@
 
         object-fit: cover;
 
-        border-radius: 50%;
+        /*border-radius: 50%;
         border-width: 5px;
         border-style: solid;
         border-color: #ccc;
 
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);*/
+
+        border-radius: 50%;
+        border: 5px solid #eee;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
 
         position: absolute;
         top: 60px;
@@ -159,6 +175,12 @@
 
         width: 100%;
         height: 320px;
+
+    }
+
+    .list-block {
+
+        margin: 16px 0;
 
     }
 
@@ -214,7 +236,7 @@
                                     </p>
 
                                     <p id="kessler-rank">
-                                        Stellv. chulleiter
+                                        Stellv. Schulleiter
                                     </p>
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#ver:v1.5.1
+#ver:v1.5.2
 #plugin:4.8.3
 
 CACHE:
@@ -17,6 +17,8 @@ CACHE:
 /img/dombrowski.4971065.jpg
 /img/kessler.b0be8f8.jpg
 /img/mensa-img.e71a7ba.jpg
+/img/paulH.59f6054.jpg
+/img/paulT.8f3d8ac.jpg
 /img/profileimg.393a6ba.png
 /img/screenshot0.3a05fd9.jpg
 /img/screenshot2.6e4643b.jpg
@@ -26,10 +28,10 @@ CACHE:
 /img/screenshot6.b5d9508.jpg
 /img/sponsor-egm.6b8c454.jpg
 /img/sponsor-lionsclub.af7b5a9.jpg
-/app.c9f86fe.js
-/init.c9f86fe.js
-/app.c9f86fe.css
-/init.c9f86fe.css
+/app.adb3967.js
+/init.adb3967.js
+/app.adb3967.css
+/init.adb3967.css
 /
 /offline-service-worker.js
 /manifest.json

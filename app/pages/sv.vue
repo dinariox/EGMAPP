@@ -68,12 +68,16 @@
 
         object-fit: cover;
 
-        border-radius: 50%;
+        /*border-radius: 50%;
         border-width: 5px;
         border-style: solid;
         border-color: #ccc;
 
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);*/
+
+        border-radius: 50%;
+        border: 5px solid #eee;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
 
         position: absolute;
         top: 60px;
@@ -111,12 +115,16 @@
 
         object-fit: cover;
 
-        border-radius: 50%;
+        /*border-radius: 50%;
         border-width: 5px;
         border-style: solid;
         border-color: #ccc;
 
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);*/
+
+        border-radius: 50%;
+        border: 5px solid #eee;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
 
         position: absolute;
         top: 60px;
@@ -192,6 +200,12 @@
 
     }
 
+    .list-block {
+
+        margin: 16px 0;
+
+    }
+
 </style>
 
 
@@ -227,10 +241,18 @@
 
                             <img id="sv-img" src="../images/SV-Team.jpg">
 
+                            <p>
+                                Im Rahmen der ersten SV-Sitzung des Jahres am 21./22.09.2016 wurden die neuen Schülersprecherinnen unserer Schule gewählt: Melina Busch (Q1) und Jessica Paul (Q1).
+                                <br />Ebenso wurde das neue SV-Team benannt, das ihre Arbeit mitträgt.
+                                <br />Dazu gehören: Niklas Bölling (Q1), Pauline Kronenberg (Q1), Julian Jarosch (Stufe 8, zuständig für alle technischen Angelegenheiten), Laura Düster (EF), Paul Theobald (EF), Jonathan Fast (EF), Luca Köhler (Q1, Kassenwart) und Paul Handke (EF, Presseteam). Sie werden im ersten Halbjahr auch weiterhin durch einen Teil der alten SV (Florian und Stefanie Gierse, Ben Höfer, Alessa Rebein) unterstützt.
+                                <br />Wie bereits im vergangenen Schuljahr werden sie durch Herrn Rickes und Frau Bikowski begleitet.
+                                <br />Die neuen Schülersprecherinnen und das gesamte SV – Team haben sich für dieses Schuljahr u.a. Projekte zur weiteren Gestaltung unseres Schulhofes, zur Optimierung der Fahrtenwoche (Fokus: Die sich nicht auf Studienfahrt befindlichen Stufen EF und Q1) und weitere traditionelle Aktionen wie SV-Discos vorgenommen. (PH)
+                            </p>
+
                             <div id="sv-wrapper">
 
                                 <div id="sv1">
-                                    <img id="sv1-img">
+                                    <img id="sv1-img" src="../images/paulH.jpg">
                                     <p id="sv1-name">
                                         Paul Handke
                                     </p>
@@ -241,7 +263,7 @@
                                 </div>
 
                                 <div id="sv2">
-                                    <img id="sv2-img">
+                                    <img id="sv2-img" src="../images/paulT.jpg">
                                     <p id="sv2-name">
                                         Paul Theobald
                                     </p>

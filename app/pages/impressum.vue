@@ -51,7 +51,7 @@
         </p>
 
         <f7-button @click="gotoHomepage()">Schulhomepage</f7-button>
-        <f7-button @click="writeEmail()">Email an Schulleitung</f7-button>
+        <f7-button @click="writeEmail()">Schule kontaktieren</f7-button>
 
 
         <div class="list-block accordion-list">

@@ -272,6 +272,35 @@
                       </div>
                   </div>
               </li>
+              <li class="accordion-item"><a href="#" class="item-content item-link">
+                  <div class="item-inner">
+                      <div class="item-title">Scrollen nicht möglich</div>
+                  </div></a>
+                  <div class="accordion-item-content">
+                      <div class="content-block">
+                          <p>
+
+                              Leider ist es für uns unmöglich 100% aller Geräte und Browser zu unterstützen, und manche Dinge die im Kern des App-Frameworks sind können wir auch nicht so leicht ändern.<br />Falls Du nicht scrollen kannst, findest Du hier eine mögliche Lösung für das Problem:<br /><br />
+
+                              <ol>
+                                  <li>
+                                      Google Chrome bietet mit Abstand die beste Unterstützung für alle Geräte. Falls Du Chrome nicht hast, lade es Dir im App Store bzw. Play Store herunter.
+                                  </li><br />
+                                  <li>
+                                      Falls Du die App auf deinem Homescreen hast, entferne sie und öffne app.ev-g-m.de in Chrome. Wenn Du Android benutzt, kannst Du auch mit Chrome die App wieder zum Homescreen hinzufügen.
+                                  </li><br />
+                                  <li>
+                                      Falls das Problem weiterhin besteht, schreibe bitte unseren Support an (Einstellungen -> Support/Fehler melden). Bitte nenne uns, welches Gerät Du benutzt und dazu welchen Browser (wenn nicht Chrome) und welche Version von Android, iOS oder Sonstigem.<br />Wir versuchen ein Lösung zu finden!
+                                  </li>
+                              </ol>
+                              <br />
+                              Viel Erfolg!
+
+
+                          </p>
+                      </div>
+                  </div>
+              </li>
           </ul>
       </div>
 
