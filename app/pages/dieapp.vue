@@ -76,7 +76,7 @@
 
       <img id="help-img" src="../images/screenshot0.jpg">
 
-      <p class="sub-title">
+      <!-- <p class="sub-title">
           Die Funktionen der EGM-App kurz & knapp
       </p>
 
@@ -170,11 +170,11 @@
                   </div>
               </li>
           </ul>
-      </div>
+      </div> -->
 
 
 
-      <p class="sub-title">
+      <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">
           Tutorials für die Nutzung der App
       </p>
 
@@ -184,11 +184,11 @@
           <ul>
               <li class="accordion-item"><a href="#" class="item-content item-link">
                   <div class="item-inner">
-                      <div class="item-title">Die App auf Deinem Homescreen</div>
+                      <div class="item-title" v-bind:style="{ fontSize: bigtextSize }">Die App auf Deinem Homescreen</div>
                   </div></a>
                   <div class="accordion-item-content">
                       <div class="content-block">
-                          <p>
+                          <p v-bind:style="{ fontSize: bigtextSize }">
 
                               Die App in <b>drei Schritten</b> auf Deinen Homescreen:
                               <br />
@@ -215,11 +215,11 @@
               </li>
               <li class="accordion-item"><a href="#" class="item-content item-link">
                   <div class="item-inner">
-                      <div class="item-title">Passwort zurücksetzen</div>
+                      <div class="item-title" v-bind:style="{ fontSize: bigtextSize }">Passwort zurücksetzen</div>
                   </div></a>
                   <div class="accordion-item-content">
                       <div class="content-block">
-                          <p>
+                          <p v-bind:style="{ fontSize: bigtextSize }">
 
                               Das Passwort zurückzusetzen ist sehr einfach. Hier <b>drei Schritte</b> zu Deinem neuen Passwort:<br /><br />
 
@@ -244,11 +244,11 @@
               </li>
               <li class="accordion-item"><a href="#" class="item-content item-link">
                   <div class="item-inner">
-                      <div class="item-title">App aktualisieren</div>
+                      <div class="item-title" v-bind:style="{ fontSize: bigtextSize }">App aktualisieren</div>
                   </div></a>
                   <div class="accordion-item-content">
                       <div class="content-block">
-                          <p>
+                          <p v-bind:style="{ fontSize: bigtextSize }">
 
                               Es ist möglich, dass Dein Browser App-Daten im Cache speichert, damit nicht jedes mal alles wieder neu heruntergeladen werden muss. Das kann die Folge haben, dass Du evtl. einen älteren Stand der App als deine Freunde/Kollegen hast.<br />
                               In den nächsten Schritten stellen wir einen möglichen Lösungsversuch vor:<br /><br />
@@ -274,11 +274,11 @@
               </li>
               <li class="accordion-item"><a href="#" class="item-content item-link">
                   <div class="item-inner">
-                      <div class="item-title">Scrollen nicht möglich</div>
+                      <div class="item-title" v-bind:style="{ fontSize: bigtextSize }">Scrollen nicht möglich</div>
                   </div></a>
                   <div class="accordion-item-content">
                       <div class="content-block">
-                          <p>
+                          <p v-bind:style="{ fontSize: bigtextSize }">
 
                               Leider ist es für uns unmöglich 100% aller Geräte und Browser zu unterstützen, und manche Dinge die im Kern des App-Frameworks sind können wir auch nicht so leicht ändern.<br />Falls Du nicht scrollen kannst, findest Du hier eine mögliche Lösung für das Problem:<br /><br />
 
@@ -305,7 +305,7 @@
       </div>
 
 
-      <f7-button big raised color="green" filled @click="gotoYouTube()">Video Tutorials</f7-button>
+      <f7-button big raised color="green" filled @click="gotoYouTube()" v-bind:style="{ fontSize: bigtextSize }">Video Tutorials</f7-button>
 
       <br /><br />
 
@@ -318,14 +318,33 @@
 <script>
     export default {
       data: function () {
+        var bigtextSize = ''
+        this.checkTextSize()
+
         return {
+
+          bigtextSize: bigtextSize
 
         }
       },
       mounted: function () {
       },
       methods: {
-        // Method to add new item
+
+        checkTextSize: function () {
+          var self = this
+
+          this.$root.db('settings/' + this.$root.user.uid).once('value').then(function (snapshot) {
+            var settings = snapshot.val()
+
+            if (settings.bigtext === 'true') {
+              self.bigtextSize = '14pt'
+            } else {
+              self.bigtextSize = ''
+            }
+          })
+        },
+
         gotoYouTube: function () {
           window.location.href = 'https://www.youtube.com/channel/UCVY-O-ZiykZieTlMFx7W4IQ'
         }

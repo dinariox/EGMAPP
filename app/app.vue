@@ -20,11 +20,13 @@
 
         width: 100%;
         font-size: 18pt;
-        font-weight: 500;
+        font-weight: 300;
         line-height: normal;
 
         margin-top: 10px;
         margin-bottom: 10px;
+
+        color: #25a69a;
 
     }
 
@@ -51,6 +53,12 @@
 
     }
 
+    .popup-close .material-icons {
+
+        color: #25a69a;
+
+    }
+
     .popup-image {
 
         max-width: 100%;
@@ -58,6 +66,8 @@
 
         margin-top: 16px;
         margin-bottom: 16px;
+
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
 
     }
 
@@ -95,6 +105,17 @@
     .text-padding {
 
         padding: 0 16px;
+
+    }
+
+    hr {
+
+        border: 0;
+        height: 1px;
+        background: #333;
+        background-image: linear-gradient(to right, #ccc, #333, #ccc);
+
+        margin: 0 16px;
 
     }
 
@@ -277,7 +298,7 @@ let text = {
     emailSent: 'E-Mail verschickt',
     checkYourInbox: 'Bitte schau in deinem Posteingang.',
     signOutDone: 'Abmeldung erfolgreich',
-    accountCreated: 'Konto erfolgreich erstellt, willkommen 😊',
+    accountCreated: 'Dein Konto wurde erfolgreich erstellt! Willkommen in der EGM App. 😊<br /><br />Hier erfährst Du, ob Du Vertretungs- oder Freistunden hast, kannst den Mensaplan einsehen und hast die Möglichkeit die Artikel unserer Homepage oder wichtige Informationen der Schulleitung und SV zu lesen.',
     error: 'Fehler',
     errorOffline: 'Diese Aktion ist offline nicht möglich.',
     errorNoEmail: 'Bitte gib Deine E-Mail-Adresse ein.',
@@ -350,7 +371,7 @@ export default {
     },
 
     checkAppVersion: function () {
-      var CURRENT_APP_VERSION = '1.5.2'
+      var CURRENT_APP_VERSION = '1.6.0'
       window.sessionStorage.setItem('appVersion', CURRENT_APP_VERSION)
 
       this.appVersion = CURRENT_APP_VERSION
@@ -363,7 +384,7 @@ export default {
         if (CURRENT_APP_VERSION !== newestVersion) {
           var alertMsg = 'Die Version der App auf Deinem Gerät ist <b>' + CURRENT_APP_VERSION + '</b><br />Die aktuellste Version ist <b>' + newestVersion + '</b><br /><br />Aktualisiere bitte die App. <b>Melde</b> dich im Menü <b>ab</b>, starte die App neu und melde dich wieder an.<br />Falls das nicht hilft, erfahre unter "Die App" > "App aktualisieren", warum das nötig ist und wie Du es machst.'
 
-          window.f7.alert(alertMsg, 'Update verfügbar')
+          window.f7.alert(alertMsg, '⚙️ Update verfügbar')
         }
       })
     },
@@ -474,9 +495,19 @@ export default {
               window.f7.addNotification({
                 title: this.text.accountCreated,
                 message: this.text.accountCreated,
-                hold: 3000,
+                hold: 7000,
                 closeIcon: false
               })
+
+              var isChrome = !!window.chrome && !!window.chrome.webstore
+              var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === '[object SafariRemoteNotification]' })(!window['safari'])
+
+              if (!isChrome && !isSafari) {
+                console.log('Nicht Safari, nicht Chrome')
+
+                window.f7.alert('Um alle App Inhalte zuverlässing nutzen zu können, nutze bitte Google Chrome um die App zu öffnen.', '⚙️ Nutze Chrome!')
+              }
+
               this.$root.db('users/' + user.uid).set({
                 stufenkey: mystufenkey,
                 firstname: myfirstname,
@@ -517,7 +548,7 @@ export default {
               window.f7.addNotification({
                 title: this.text.emailSent,
                 message: this.text.checkYourInbox,
-                hold: 3000,
+                hold: 20000,
                 closeIcon: false
               })
               this.mode = 'signIn'

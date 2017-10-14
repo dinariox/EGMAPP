@@ -160,6 +160,7 @@
         position: absolute;
         left: 50%;
         width: 50%;
+        margin-top: -20px;
 
     }
 
@@ -168,13 +169,14 @@
         position: absolute;
         width: 50%;
         left: 0;
+        margin-top: -20px;
 
     }
 
     #sv-wrapper {
 
         width: 100%;
-        height: 320px;
+        height: 282px;
 
     }
 
@@ -234,14 +236,22 @@
             <ul>
                 <li class="accordion-item"><a href="#" class="item-content item-link">
                     <div class="item-inner">
-                        <div class="item-title">Das SV-Team</div>
+                        <div class="item-title" v-bind:style="{ fontSize: bigtextSize }">Das SV-Team</div>
                     </div></a>
                     <div class="accordion-item-content">
                         <div class="content-block">
 
+                            <br />
+                            <hr />
+                            <br />
+
                             <img id="sv-img" src="../images/SV-Team.jpg">
 
-                            <p>
+                            <br />
+                            <br />
+                            <hr />
+
+                            <p v-bind:style="{ fontSize: bigtextSize }">
                                 Im Rahmen der ersten SV-Sitzung des Jahres am 21./22.09.2016 wurden die neuen Schülersprecherinnen unserer Schule gewählt: Melina Busch (Q1) und Jessica Paul (Q1).
                                 <br />Ebenso wurde das neue SV-Team benannt, das ihre Arbeit mitträgt.
                                 <br />Dazu gehören: Niklas Bölling (Q1), Pauline Kronenberg (Q1), Julian Jarosch (Stufe 8, zuständig für alle technischen Angelegenheiten), Laura Düster (EF), Paul Theobald (EF), Jonathan Fast (EF), Luca Köhler (Q1, Kassenwart) und Paul Handke (EF, Presseteam). Sie werden im ersten Halbjahr auch weiterhin durch einen Teil der alten SV (Florian und Stefanie Gierse, Ben Höfer, Alessa Rebein) unterstützt.
@@ -249,30 +259,36 @@
                                 <br />Die neuen Schülersprecherinnen und das gesamte SV – Team haben sich für dieses Schuljahr u.a. Projekte zur weiteren Gestaltung unseres Schulhofes, zur Optimierung der Fahrtenwoche (Fokus: Die sich nicht auf Studienfahrt befindlichen Stufen EF und Q1) und weitere traditionelle Aktionen wie SV-Discos vorgenommen. (PH)
                             </p>
 
+                            <br />
+                            <hr />
+
                             <div id="sv-wrapper">
 
                                 <div id="sv1">
                                     <img id="sv1-img" src="../images/paulH.jpg">
-                                    <p id="sv1-name">
+                                    <p id="sv1-name" v-bind:style="{ fontSize: bigtextSize }">
                                         Paul Handke
                                     </p>
 
-                                    <p id="sv1-rank">
+                                    <p id="sv1-rank" v-bind:style="{ fontSize: bigtextSize }">
                                         Q1 | Schülersprecher
                                     </p>
                                 </div>
 
                                 <div id="sv2">
                                     <img id="sv2-img" src="../images/paulT.jpg">
-                                    <p id="sv2-name">
+                                    <p id="sv2-name" v-bind:style="{ fontSize: bigtextSize }">
                                         Paul Theobald
                                     </p>
 
-                                    <p id="sv2-rank">
+                                    <p id="sv2-rank" v-bind:style="{ fontSize: bigtextSize }">
                                         Q1 | Schülersprecher
                                     </p>
                                 </div>
                             </div>
+
+                            <hr />
+
                         </div>
                     </div>
                 </li>
@@ -324,15 +340,33 @@
     export default {
       data: function () {
         var items = []
+        var bigtextSize = ''
         this.addNewItem()
+        this.checkTextSize()
         return {
           items: items,
-          cancelicon: require('../images/ic_cancel_black_24dp.png')
+          cancelicon: require('../images/ic_cancel_black_24dp.png'),
+          bigtextSize: bigtextSize
         }
       },
       mounted: function () {
       },
       methods: {
+
+        checkTextSize: function () {
+          var self = this
+
+          this.$root.db('settings/' + this.$root.user.uid).once('value').then(function (snapshot) {
+            var settings = snapshot.val()
+
+            if (settings.bigtext === 'true') {
+              self.bigtextSize = '14pt'
+            } else {
+              self.bigtextSize = ''
+            }
+          })
+        },
+
         // Method to add new item
         addNewItem: function () {
           var self = this
@@ -399,6 +433,10 @@
 
                         </div>
 
+                        <br />
+                        <hr />
+                        <br />
+
                         <p id='popup-text' class='popup-text'>
                             ` + text + `
                         </p>
@@ -428,9 +466,15 @@
 
                             </div>
 
+                            <br />
+                            <hr />
+
                             <p style="text-align: center;">
                               <img class='popup-image' src=` + image + `>
                             </p>
+
+                            <hr />
+                            <br />
 
                             <p id='popup-text' class='popup-text'>
                                 ` + text + `

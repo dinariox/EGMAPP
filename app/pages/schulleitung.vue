@@ -212,7 +212,7 @@
             <ul>
                 <li class="accordion-item"><a href="#" class="item-content item-link">
                     <div class="item-inner">
-                        <div class="item-title">Über die Schulleitung</div>
+                        <div class="item-title" v-bind:style="{ fontSize: bigtextSize }">Über die Schulleitung</div>
                     </div></a>
                     <div class="accordion-item-content">
                         <div class="content-block">
@@ -220,22 +220,22 @@
 
                                 <div id="dombro">
                                     <img id="dombro-img" src="../images/dombrowski.jpg">
-                                    <p id="dombro-name">
+                                    <p id="dombro-name" v-bind:style="{ fontSize: bigtextSize }">
                                         Sven Dombrowski
                                     </p>
 
-                                    <p id="dombro-rank">
+                                    <p id="dombro-rank" v-bind:style="{ fontSize: bigtextSize }">
                                         Schulleiter
                                     </p>
                                 </div>
 
                                 <div id="kessler">
                                     <img id="kessler-img" src="../images/kessler.jpg">
-                                    <p id="kessler-name">
+                                    <p id="kessler-name" v-bind:style="{ fontSize: bigtextSize }">
                                         Eckhard Kessler
                                     </p>
 
-                                    <p id="kessler-rank">
+                                    <p id="kessler-rank" v-bind:style="{ fontSize: bigtextSize }">
                                         Stellv. Schulleiter
                                     </p>
                                 </div>
@@ -247,7 +247,7 @@
         </div>
 
 
-        <p class="sub-title">
+        <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">
             Mitteilungen der Schulleitung
         </p>
 
@@ -292,15 +292,33 @@
     export default {
       data: function () {
         var items = []
+        var bigtextSize = ''
         this.addNewItem()
+        this.checkTextSize()
         return {
           items: items,
-          cancelicon: require('../images/ic_cancel_black_24dp.png')
+          cancelicon: require('../images/ic_cancel_black_24dp.png'),
+          bigtextSize: bigtextSize
         }
       },
       mounted: function () {
       },
       methods: {
+
+        checkTextSize: function () {
+          var self = this
+
+          this.$root.db('settings/' + this.$root.user.uid).once('value').then(function (snapshot) {
+            var settings = snapshot.val()
+
+            if (settings.bigtext === 'true') {
+              self.bigtextSize = '14pt'
+            } else {
+              self.bigtextSize = ''
+            }
+          })
+        },
+
         // Method to add new item
         addNewItem: function () {
           var self = this
@@ -366,6 +384,10 @@
 
                         </div>
 
+                        <br />
+                        <hr />
+                        <br />
+
                         <p id='popup-text' class='popup-text'>
                             ` + text + `
                         </p>
@@ -398,6 +420,9 @@
                             <p style="text-align: center;">
                               <img class='popup-image' src=` + image + `>
                             </p>
+
+                            <hr />
+                            <br />
 
                             <p id='popup-text' class='popup-text'>
                                 ` + text + `

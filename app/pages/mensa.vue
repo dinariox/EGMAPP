@@ -71,10 +71,10 @@
 
         <img id="mensa-img" src="../images/mensa-img.jpg">
 
-        <p class="sub-title">Alles rund um unsere Schulmensa</p>
+        <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">Alles rund um unsere Schulmensa</p>
 
 
-        <p class="text-padding">
+        <p class="text-padding" v-bind:style="{ fontSize: bigtextSize }">
 
             In unserer Schulmensa findest Du jede Mittagspause ein gesundes und abwechslungsreiches Mittagessen. Seit 2010 ist sie mit ihren vielen verschiedenen Verwendungszwecken und ihrer modernen Ausstattung eines der Herzstücke unserer Schule geworden.<br />
             In diesem Menü kannst du Dir das Essens-Angebot der nächsten Woche angucken, oder mit einem Klick dein Mensa-Konto bzw. Abo verwalten.
@@ -89,22 +89,22 @@
         <br />
 
 
-        <f7-button class="buttons" big fill color="green" @click="openMensa()">Mensaplan öffnen</f7-button>
-        <f7-button class="buttons" big fill color="orange" @click="gotoMensaKonto()">Mensa-Konto</f7-button>
+        <f7-button class="buttons" big fill color="green" @click="openMensa()" v-bind:style="{ fontSize: bigtextSize }">Mensaplan öffnen</f7-button>
+        <f7-button class="buttons" big fill color="orange" @click="gotoMensaKonto()" v-bind:style="{ fontSize: bigtextSize }">Mensa-Konto</f7-button>
 
         <div class="list-block accordion-list">
             <ul>
                 <li class="accordion-item"><a href="#" class="item-content item-link">
                     <div class="item-inner">
-                        <div class="item-title">Der Mensa-Verein</div>
+                        <div class="item-title" v-bind:style="{ fontSize: bigtextSize }">Der Mensa-Verein</div>
                     </div></a>
                     <div class="accordion-item-content">
                         <div class="content-block">
 
-                            <p class="text-padding">
+                            <p class="text-padding" v-bind:style="{ fontSize: bigtextSize }">
                                 Der Mensaverein ist zuständig für die komplette Organisation der Mensa.
                                 <br /><br />
-                                Weitere Informationen auf der <f7-button @click="gotoFlyer()">Schulhomepage</f7-button>
+                                Weitere Informationen auf der <f7-button @click="gotoFlyer()" v-bind:style="{ fontSize: bigtextSize }">Schulhomepage</f7-button>
                             </p>
 
                         </div>
@@ -121,7 +121,12 @@
     export default {
 
       data: function () {
+        var bigtextSize = ''
+        this.checkTextSize()
+
         return {
+
+          bigtextSize: bigtextSize
 
         }
       },
@@ -132,7 +137,21 @@
 
       methods: {
 
-            // Der Mensaplan wird in einem Fotobrowser geöffnet
+        checkTextSize: function () {
+          var self = this
+
+          this.$root.db('settings/' + this.$root.user.uid).once('value').then(function (snapshot) {
+            var settings = snapshot.val()
+
+            if (settings.bigtext === 'true') {
+              self.bigtextSize = '14pt'
+            } else {
+              self.bigtextSize = ''
+            }
+          })
+        },
+
+        // Der Mensaplan wird in einem Fotobrowser geöffnet
         openMensa: function () {
           window.f7.showIndicator()
           this.$root.store('Mensaplan/Speiseplan.png').getDownloadURL().then(function (url) {

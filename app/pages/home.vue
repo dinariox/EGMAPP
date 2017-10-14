@@ -119,6 +119,13 @@
 
     }
 
+    .smallerTopMargin {
+
+        margin-top: 12px;
+
+    }
+
+
 
 </style>
 
@@ -155,7 +162,7 @@
                 {{rndWillkommenstext}}
             </p>
 
-            <p id="welcome-author">
+            <p id="welcome-author" v-bind:style="{ fontSize: bigtextSize }">
                 <!-- Paul Handke (EF) - Spanisch -->
                 <!-- Meltem Kazan & Zeynel Atas (Q1) -->
                 {{rndWillkommenstextAutor}} - {{rndWillkommenstextSprache}}
@@ -163,90 +170,101 @@
 
         </div>
 
-        <p class="sub-title">
-            Der aktuellste Beitrag von der Homepage
-        </p>
 
-        <div class="newest" v-for="item in itemsHP" v-on:click="open(item.title, item.text, item.date, item.image)">
+        <hr />
 
-            <div class="img-div">
 
-                <img :src="item.icon" class="teaser-img" />
+        <div id="newswrapper">
+
+            <p class="sub-title smallerTopMargin" v-bind:style="{ fontSize: bigtextSize }">
+                Der aktuellste Beitrag von der Homepage
+            </p>
+
+            <div class="newest" v-for="item in itemsHP" v-on:click="open(item.title, item.text, item.date, item.image)">
+
+                <div class="img-div">
+
+                    <img :src="item.icon" class="teaser-img" />
+
+                </div>
+
+                <div class="text-div">
+
+                    <p class="title-p">
+                        {{item.title}}
+                    </p>
+                    <p class="date-p">
+                        {{item.date}}
+                    </p>
+                    <p class="text-p">
+                        {{item.textshort}}
+                    </p>
+
+                </div>
 
             </div>
 
-            <div class="text-div">
+            <hr />
 
-                <p class="title-p">
-                    {{item.title}}
-                </p>
-                <p class="date-p">
-                    {{item.date}}
-                </p>
-                <p class="text-p">
-                    {{item.textshort}}
-                </p>
+            <p class="sub-title smallerTopMargin" v-bind:style="{ fontSize: bigtextSize }">
+                Das Neuste von der SV
+            </p>
+
+            <div class="newest" v-for="item in itemsSV" v-on:click="open(item.title, item.text, item.date, item.image)">
+
+                <div class="img-div">
+
+                    <img :src="item.icon" class="teaser-img" />
+
+                </div>
+
+                <div class="text-div">
+
+                    <p class="title-p">
+                        {{item.title}}
+                    </p>
+                    <p class="date-p">
+                        {{item.date}}
+                    </p>
+                    <p class="text-p">
+                        {{item.textshort}}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <p class="sub-title smallerTopMargin" v-bind:style="{ fontSize: bigtextSize }">
+                Wichtiges von der Schulleitung
+            </p>
+
+            <div class="newest" v-for="item in itemsSL" v-on:click="open(item.title, item.text, item.date, item.image)">
+
+                <div class="img-div">
+
+                    <img :src="item.icon" class="teaser-img" />
+
+                </div>
+
+                <div class="text-div">
+
+                    <p class="title-p">
+                        {{item.title}}
+                    </p>
+                    <p class="date-p">
+                        {{item.date}}
+                    </p>
+                    <p class="text-p">
+                        {{item.textshort}}
+                    </p>
+
+                </div>
 
             </div>
 
         </div>
-
-        <p class="sub-title">
-            Das Neuste von der SV
-        </p>
-
-        <div class="newest" v-for="item in itemsSV" v-on:click="open(item.title, item.text, item.date, item.image)">
-
-            <div class="img-div">
-
-                <img :src="item.icon" class="teaser-img" />
-
-            </div>
-
-            <div class="text-div">
-
-                <p class="title-p">
-                    {{item.title}}
-                </p>
-                <p class="date-p">
-                    {{item.date}}
-                </p>
-                <p class="text-p">
-                    {{item.textshort}}
-                </p>
-
-            </div>
-
-        </div>
-
-        <p class="sub-title">
-            Wichtiges von der Schulleitung
-        </p>
-
-        <div class="newest" v-for="item in itemsSL" v-on:click="open(item.title, item.text, item.date, item.image)">
-
-            <div class="img-div">
-
-                <img :src="item.icon" class="teaser-img" />
-
-            </div>
-
-            <div class="text-div">
-
-                <p class="title-p">
-                    {{item.title}}
-                </p>
-                <p class="date-p">
-                    {{item.date}}
-                </p>
-                <p class="text-p">
-                    {{item.textshort}}
-                </p>
-
-            </div>
-
-        </div>
-
 
 
 
@@ -266,6 +284,8 @@
         var rndWillkommenstextSprache = ''
         var rndBild = ''
         var userFirstname = ''
+        var bigtextSize = ''
+        this.checkTextSize()
         this.addNewItem()
         this.randomStartbild()
         this.getUserFirstname()
@@ -280,12 +300,28 @@
           rndWillkommenstext: rndWillkommenstext,
           rndWillkommenstextAutor: rndWillkommenstextAutor,
           rndWillkommenstextSprache: rndWillkommenstextSprache,
-          userFirstname: userFirstname
+          userFirstname: userFirstname,
+          bigtextSize: bigtextSize
         }
       },
       mounted: function () {
       },
       methods: {
+
+        checkTextSize: function () {
+          var self = this
+
+          this.$root.db('settings/' + this.$root.user.uid).once('value').then(function (snapshot) {
+            var settings = snapshot.val()
+
+            if (settings.bigtext === 'true') {
+              self.bigtextSize = '14pt'
+            } else {
+              self.bigtextSize = ''
+            }
+          })
+        },
+
         // Method to add new item
         addNewItem: function () {
           var self = this
@@ -416,6 +452,10 @@
 
                         </div>
 
+                        <br />
+                        <hr />
+                        <br />
+
                         <p id='popup-text' class='popup-text'>
                             ` + text + `
                         </p>
@@ -445,9 +485,15 @@
 
                             </div>
 
+                            <br />
+                            <hr />
+
                             <p style="text-align: center;">
                               <img class='popup-image' src=` + image + `>
                             </p>
+
+                            <hr />
+                            <br />
 
                             <p id='popup-text' class='popup-text'>
                                 ` + text + `

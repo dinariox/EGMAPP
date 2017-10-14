@@ -72,12 +72,12 @@
 
       <img id="team-img" src="../images/dasteam.jpg">
 
-      <p class="sub-title">
+      <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">
           Über das EGM-Medienteam
       </p>
 
 
-      <p class="text-padding">
+      <p class="text-padding" v-bind:style="{ fontSize: bigtextSize }">
           Das EGM-Medienteam ist eine Gruppe von Schülern, die sich rund um das Entwerfen & Programmieren Deiner EGM-App und um Teile der Homepage kümmern.
           <br />
           Das Team ist Teil des EGM-Presseteams, welches auch der Initiator des App-Projekts gewesen ist.
@@ -89,64 +89,64 @@
           <ul>
               <li class="accordion-item"><a href="#" class="item-content item-link">
                   <div class="item-inner">
-                      <div class="item-title">Das Team</div>
+                      <div class="item-title" v-bind:style="{ fontSize: bigtextSize }">Das Team</div>
                   </div></a>
                   <div class="accordion-item-content">
                       <div class="content-block">
-                          <p>
-                              <p class="sub-title">
+                          <p v-bind:style="{ fontSize: bigtextSize }">
+                              <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">
                                   Paul Handke (Q1)
                               </p>
-                              <p class="text-padding">
+                              <p class="text-padding" v-bind:style="{ fontSize: bigtextSize }">
                                   Paul ist der allgemeine Organisator der App. Seit den Überlegungen einer möglichen EGM-App im Jahre 2015 ist er dabei. Er kümmert sich um alles Organisatorische, liefert Ideen und koordiniert,  was in die App hineinkommt, er ist Gründer und Leiter des Medienteams.
                               </p>
 
-                              <p class="sub-title">
+                              <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">
                                   Timo Nowak (Q1)
                               </p>
-                              <p class="text-padding">
+                              <p class="text-padding" v-bind:style="{ fontSize: bigtextSize }">
                                   Timo leitet die Programmierung der EGM-App. Er ist mit seinen Mitstreitern dafür verantwortlich, dass alle Ideen und Funktionsentwürfe perfekt in die App integriert werden. So konnten bereits viele Funktionen umgesetzt werden und das Projekt sehr erfolgreich vorangetrieben werden.
                               </p>
 
-                              <p class="sub-title">
+                              <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">
                                   Marvin Strangfeld (Abiturient)
                               </p>
-                              <p class="text-padding">
+                              <p class="text-padding" v-bind:style="{ fontSize: bigtextSize }">
                                   Marvin hat den Grundstein für die App gelegt. Nach Gesprächen und Planungen des Presseteams hat er die erste Version der App designt und programmiert. Wichtige Grundfunktionen wie den digitalen Vertretungsplan konnte er umsetzten.
                               </p>
 
-                              <p class="sub-title">
+                              <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">
                                   Leon Bromand (Q1)
                               </p>
-                              <p class="text-padding">
+                              <p class="text-padding" v-bind:style="{ fontSize: bigtextSize }">
                                   Leon hat als Redakteur des Teams mit Redaktionsarbeit zu tun. Er ist dafür zuständig, Funktionen der App mit Info-Texten und anderen Beiträgen lebendig zu machen. Darüber hinaus liefert er Unterstützung bei der Organisation.
                               </p>
 
-                              <p class="sub-title">
+                              <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">
                                   Ole Beckmann (Q1)
                               </p>
-                              <p class="text-padding">
+                              <p class="text-padding" v-bind:style="{ fontSize: bigtextSize }">
                                   Ole ist ebenfalls in der Redaktion der App aktiv. Er hat außerdem bei der Erstellung der verschiedenen Info-Clips mitgewirkt und kümmert sich jetzt mit um die Aktualisierung und Instandhaltung des Support-Bereichs der App.
                               </p>
 
-                              <p class="sub-title">
+                              <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">
                                   Julian Klose (Q1)
                               </p>
-                              <p class="text-padding">
+                              <p class="text-padding" v-bind:style="{ fontSize: bigtextSize }">
                                   Julian ist unser „Multifunktionswerkzeug“. Er hilft bei der Programmierung der App, ist für die Aktualisierung des mittleren Homepagebereichs verantwortlich und hilft auch in der Redaktion aus.
                               </p>
 
-                              <p class="sub-title">
+                              <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">
                                   Till Hammer (Q1)
                               </p>
-                              <p class="text-padding">
+                              <p class="text-padding" v-bind:style="{ fontSize: bigtextSize }">
                                   Till unterstützt Timo bei der Programmierung der App. Des Weiteren beschäftigt sich Till mit zusätzlichen noch folgenden Funktionen, die in Zukunft in die App integriert werden.
                               </p>
 
-                              <p class="sub-title">
+                              <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">
                                   Ben Leitzbach (Q1)
                               </p>
-                              <p class="text-padding">
+                              <p class="text-padding" v-bind:style="{ fontSize: bigtextSize }">
                                   Ben ist dafür verantwortlich, dass der mittlere Bereich der Homepage immer aktuell ist. Artikel des Presseteams und anderer schulischen Gruppen sind immer ohne großen Zeitverlust zwischen „Schreiben“ und „Erscheinen“ auf der Homepage.
                               </p>
                           </p>
@@ -155,11 +155,11 @@
               </li>
               <li class="accordion-item"><a href="#" class="item-content item-link">
                   <div class="item-inner">
-                      <div class="item-title">Mitmachen</div>
+                      <div class="item-title" v-bind:style="{ fontSize: bigtextSize }">Mitmachen</div>
                   </div></a>
                   <div class="accordion-item-content">
                       <div class="content-block">
-                          <p>
+                          <p v-bind:style="{ fontSize: bigtextSize }">
                               Du willst mitmachen? Wir sehen gerne neue Gesichter in unserem Team.
                               <br /><br />
                               Wenn Du jemanden aus unserem Team kennst, sprich ihn einfach an. Alternativ kannst Du uns auch an unsere Support-Email schreiben.
@@ -169,15 +169,15 @@
               </li>
               <li class="accordion-item"><a href="#" class="item-content item-link">
                   <div class="item-inner">
-                      <div class="item-title">Sponsoren</div>
+                      <div class="item-title" v-bind:style="{ fontSize: bigtextSize }">Sponsoren</div>
                   </div></a>
                   <div class="accordion-item-content">
                       <div class="content-block">
                           <div>
-                              <p class="sub-title center-text">Evangelisches Gymnasium Meinerzhagen</p>
+                              <p class="sub-title center-text" v-bind:style="{ fontSize: bigtextSize }">Evangelisches Gymnasium Meinerzhagen</p>
                               <img src="../images/sponsor-egm.jpg" class="sponsor-img">
 
-                              <p class="sub-title center-text">Lions Club Meinerzhagen-Kierspe</p>
+                              <p class="sub-title center-text" v-bind:style="{ fontSize: bigtextSize }">Lions Club Meinerzhagen-Kierspe</p>
                               <img src="../images/sponsor-lionsclub.jpg" class="sponsor-img">
 
                               <br /><br />
@@ -197,3 +197,36 @@
 
   </f7-page>
 </template>
+
+<script>
+    export default {
+      data: function () {
+        var bigtextSize = ''
+        this.checkTextSize()
+
+        return {
+
+          bigtextSize: bigtextSize
+
+        }
+      },
+      mounted: function () {
+      },
+      methods: {
+
+        checkTextSize: function () {
+          var self = this
+
+          this.$root.db('settings/' + this.$root.user.uid).once('value').then(function (snapshot) {
+            var settings = snapshot.val()
+
+            if (settings.bigtext === 'true') {
+              self.bigtextSize = '14pt'
+            } else {
+              self.bigtextSize = ''
+            }
+          })
+        }
+      }
+    }
+  </script>

@@ -1,6 +1,6 @@
 {
   "name": "EGM-App",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "devDependencies": {
     "app-framework": "^1.13.3",
     "fetch": "^1.1.0",

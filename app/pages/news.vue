@@ -203,6 +203,10 @@
 
                         </div>
 
+                        <br />
+                        <hr />
+                        <br />
+
                         <p id='popup-text' class='popup-text'>
                             ` + text + `
                         </p>
@@ -232,9 +236,15 @@
 
                             </div>
 
+                            <br />
+                            <hr />
+
                             <p style="text-align: center;">
                               <img class='popup-image' src=` + image + `>
                             </p>
+
+                            <hr />
+                            <br />
 
                             <p id='popup-text' class='popup-text'>
                                 ` + text + `

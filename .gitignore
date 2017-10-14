@@ -31,5 +31,3 @@ database-backup.json
 ftp-config.json
 
 BACKUP/
-BUILD_CMD/
-DEVSERVER.bat

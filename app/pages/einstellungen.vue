@@ -148,57 +148,57 @@
 
         <img class="profile-img" src="../images/profileimg.png">
 
-        <p class="app-version">
+        <p class="app-version" v-bind:style="{ fontSize: bigtextSize }">
             v{{appVersion}}
         </p>
 
-        <p class="profile-name">
+        <p class="profile-name" v-bind:style="{ fontSize: bigtextSize }">
             {{userFirstname}} {{userLastname}}
         </p>
 
-        <p class="profile-email">
+        <p class="profile-email" v-bind:style="{ fontSize: bigtextSize }">
             {{userEmail}}
         </p>
 
-        <p class="profile-stufe">
+        <p class="profile-stufe" v-bind:style="{ fontSize: bigtextSize }">
             <span v-if="userStufe!=13">Stufe {{userStufe}}</span><span v-if="userStufe==13">Lehrerkonto</span>
         </p>
 
         <div class="profile-reset-wrapper">
 
-            <f7-button big raised color="green" fill class="profile-btn-left" @click="handleReset()">Passwort ändern</f7-button big>
-            <f7-button big raised color="green" fill class="profile-btn-right" @click="handleEmailReset()">Email ändern</f7-button big>
+            <f7-button big raised color="green" fill class="profile-btn-left" @click="handleReset()" v-bind:style="{ fontSize: bigtextSize }">Passwort ändern</f7-button big>
+            <f7-button big raised color="green" fill class="profile-btn-right" @click="handleEmailReset()" v-bind:style="{ fontSize: bigtextSize }">Email ändern</f7-button big>
 
         </div>
 
         <div class="profile-reset-wrapper-bottom">
 
-            <f7-button big raised color="orange" fill class="profile-btn-left" @click="handleChangeStufenpasswort()">Stufe wechseln</f7-button big>
-            <f7-button big raised color="red" fill class="profile-btn-right" @click="handleDelete()">Konto löschen</f7-button big>
+            <f7-button big raised color="orange" fill class="profile-btn-left" @click="handleChangeStufenpasswort()" v-bind:style="{ fontSize: bigtextSize }">Stufe wechseln</f7-button big>
+            <f7-button big raised color="red" fill class="profile-btn-right" @click="handleDelete()" v-bind:style="{ fontSize: bigtextSize }">Konto löschen</f7-button big>
 
         </div>
 
       </div>
 
-    <p class="sub-title">
+    <p class="sub-title" v-bind:style="{ fontSize: bigtextSize }">
         Allgemein
     </p>
 
     <f7-list class="smallerMargin">
 
-        <f7-list-item title="Benachrichtigungen (In späteren Updates verfügbar)">
-            <span slot="after"><f7-input type="switch" @change="" disabled></f7-input></span>
+        <f7-list-item title="Textgröße (Klein / Groß)" v-bind:style="{ fontSize: bigtextSize }">
+            <span slot="after"><f7-input :checked="bigtextState" type="switch" @change="onBigtextChange()"></f7-input></span>
         </f7-list-item>
 
-        <f7-list-item title="Textgröße in Artikeln (Klein / Groß)">
-            <span slot="after"><f7-input :checked="bigtextState" type="switch" @change="onBigtextChange()"></f7-input></span>
+        <f7-list-item title="Benachrichtigungen (In späteren Updates verfügbar)" style="color: grey;" v-bind:style="{ fontSize: bigtextSize }">
+            <span slot="after"><f7-input type="switch" @change="" disabled></f7-input></span>
         </f7-list-item>
 
     </f7-list>
 
-    <f7-button color="red" v-on:click="openSupport()">Support / Fehler melden</f7-button>
-    <f7-button v-on:click="openChangelog()">Changelog</f7-button>
-    <f7-button v-on:click="openPlannedFeatures()">Geplante Features</f7-button>
+    <f7-button color="red" v-on:click="openSupport()" v-bind:style="{ fontSize: bigtextSize }">Support / Fehler melden</f7-button>
+    <f7-button v-on:click="openChangelog()" v-bind:style="{ fontSize: bigtextSize }">Changelog</f7-button>
+    <f7-button v-on:click="openPlannedFeatures()" v-bind:style="{ fontSize: bigtextSize }">Geplante Features</f7-button>
 
     <br />
     <br />
@@ -224,6 +224,8 @@ export default {
     var userEmail = ''
     var userStufenkey = ''
     var userStufe = ''
+    var bigtextSize = ''
+    this.checkTextSize()
     this.addNewItem()
     this.addNewItemPlanned()
     this.checkSettings()
@@ -240,12 +242,28 @@ export default {
       userLastname: userLastname,
       userEmail: userEmail,
       userStufenkey: userStufenkey,
-      userStufe: userStufe
+      userStufe: userStufe,
+      bigtextSize: bigtextSize
     }
   },
   mounted: function () {
   },
   methods: {
+
+    checkTextSize: function () {
+      var self = this
+
+      this.$root.db('settings/' + this.$root.user.uid).once('value').then(function (snapshot) {
+        var settings = snapshot.val()
+
+        if (settings.bigtext === 'true') {
+          self.bigtextSize = '14pt'
+        } else {
+          self.bigtextSize = ''
+        }
+      })
+    },
+
         // Method to add new item
     addNewItem: function () {
       var self = this
@@ -321,76 +339,61 @@ export default {
     },
 
     handleChangeStufenpasswort: function () {
-      var stufenkey = window.prompt('Bitte gib das neue Stufenpasswort ein:')
+      window.f7.prompt('Bitte gib das neue Stufenpasswort ein:', 'Stufe wechseln', stufenkey => {
+        window.f7.showIndicator()
 
-      if (stufenkey === '' || stufenkey === null || stufenkey === undefined) {
-        window.f7.addNotification({
-          title: 'Abgebrochen',
-          message: 'Der Vorgang wurde abgebrochen ',
-          hold: 3000,
-          closeIcon: false
-        })
-        return
-      }
+        if (this.checkstufenpass(stufenkey) !== 'true') {
+          window.f7.alert('Dieses Stufenpasswort existiert nicht, versuche es mit einem anderen.', '⚙️ Fehler')
+        } else if (this.userStufenkey === stufenkey) {
+          window.f7.alert('Du bist schon mit diesem Stufenpasswort angemeldet', '⚙️ Fehler')
+        } else {
+          var self = this
 
-      window.f7.showIndicator()
-
-      if (this.checkstufenpass(stufenkey) !== 'true') {
-        window.f7.alert('Dieses Stufenpasswort existiert nicht, versuche es mit einem anderen.', 'Fehler')
-      } else if (this.userStufenkey === stufenkey) {
-        window.f7.alert('Du bist schon mit diesem Stufenpasswort angemeldet', 'Fehler')
-      } else {
-        var self = this
-
-        this.$root.db('users/' + this.$root.user.uid).set({
-          stufenkey: stufenkey,
-          firstname: this.userFirstname,
-          lastname: this.userLastname
-        }).then(function () {
-          self.userStufenkey = stufenkey
-          window.f7.alert('Dein Stufenpasswort wurde aktualisiert.', 'Erfolg')
-          setTimeout(function () { window.location.reload() }, 1500)
-        }).catch(function (err) {
-          window.f7.alert(err, 'Fehler')
-        })
-      }
+          this.$root.db('users/' + this.$root.user.uid).set({
+            stufenkey: stufenkey,
+            firstname: this.userFirstname,
+            lastname: this.userLastname
+          }).then(function () {
+            self.userStufenkey = stufenkey
+            window.f7.alert('Dein Stufenpasswort wurde aktualisiert.', '⚙️ Erfolg')
+            setTimeout(function () { window.location.reload() }, 1500)
+          }).catch(function (err) {
+            window.f7.alert(err, 'Fehler')
+          })
+        }
+      })
     },
 
     handleDelete: function () {
-      var deleteTxt = window.prompt('Gib LÖSCHEN ein, um Deinen Account zu löschen', '')
+      window.f7.prompt('Gib LÖSCHEN ein, um Dein Konto zu löschen:', '⚙️ Konto löschen', deleteText => {
+        if (deleteText !== 'LÖSCHEN') {
+          window.f7.alert('Du hast nicht LÖSCHEN eingegeben', ' ⚙️ Abgebrochen')
+          return
+        }
 
-      if (deleteTxt !== 'LÖSCHEN' || window.confirm('Wirklich löschen?') !== true) {
-        window.f7.addNotification({
-          title: 'Abgebrochen',
-          message: 'Der Vorgang wurde abgebrochen ',
-          hold: 3000,
-          closeIcon: false
-        })
-      } else {
-        var user = window.firebase.auth().currentUser
+        window.f7.confirm('Dieser Schritt kann nicht rückgängig gemacht werden!', '⚙️ Wirklich löschen?', () => {
+          var user = window.firebase.auth().currentUser
 
-        user.delete().then(function () {
-          window.f7.alert('Dein Account wurde gelöscht!<br /><br />Bitte lade die Seite neu, um zum Anmeldebilschirm zu gelangen.', 'Erfolg')
-          setTimeout(function () { window.location.reload() }, 1500)
-        }).catch(function (error) {
-          window.f7.alert(error, 'Fehler')
+          user.delete().then(function () {
+            window.f7.alert('Dein Account wurde gelöscht!<br /><br />Bitte lade die Seite neu, um zum Anmeldebilschirm zu gelangen.', '⚙️ Erfolg')
+            setTimeout(function () { window.location.reload() }, 1500)
+          }).catch(function (error) {
+            window.f7.alert(error, '⚙️ Fehler')
+          })
         })
-      }
+      })
     },
 
     handleReset: function () {
       if (navigator.onLine === false) {
-        window.f7.alert('Du bist offline!', 'Fehler')
+        window.f7.alert('Du bist offline!', 'Fehler ⚙️')
+        return
       } else if (this.$root.user.email === '') {
-        window.f7.alert('Keine Email angegeben', 'Fehler')
-      } else if (window.confirm('Möchtest du wirklich dein Passwort zurücksetzen?<br />(Dir wird eine Email mit einem Reset-Link zugesendet)') !== true) {
-        window.f7.addNotification({
-          title: 'Abgebrochen',
-          message: 'Der Vorgang wurde abgebrochen ',
-          hold: 3000,
-          closeIcon: false
-        })
-      } else {
+        window.f7.alert('Keine Email angegeben', 'Fehler ⚙️')
+        return
+      }
+
+      window.f7.confirm('Möchtest du wirklich dein Passwort zurücksetzen?\n(Dir wird eine Email mit einem Reset-Link zugesendet)', () => {
             // Show loading indicator
         window.f7.showIndicator()
             // Send reset link
@@ -399,20 +402,15 @@ export default {
                 // Hide loading indicator
               window.f7.hideIndicator()
                 // On success, show notfication and login screen again
-              window.f7.addNotification({
-                title: 'Email wurde gesendet',
-                message: 'Bitte überprüfe Deinen Posteingang',
-                hold: 3000,
-                closeIcon: false
-              })
+              window.f7.alert('Bitte überprüfe Deinen Posteingang', '⚙️ Erfolg')
             })
             .catch(err => {
                 // Hide loading indicator
               window.f7.hideIndicator()
                 // Show error alert
-              window.f7.alert('Firebase Error: ' + err, 'Fehler')
+              window.f7.alert('Firebase Error: ' + err, '⚙️ Fehler')
             })
-      }
+      })
     },
 
     validateEmail: function (email) {
@@ -421,42 +419,33 @@ export default {
     },
 
     handleEmailReset: function () {
-      var newEmail = window.prompt('Bitte gib eine neue Email ein', 'Neue Email')
+      window.f7.prompt('Bitte gib eine neue Email ein', 'Neue Email', newEmail => {
+        if (this.validateEmail(newEmail) !== true) {
+          window.f7.alert('Bitte gib eine gültige Email-Adresse an!', '⚙️ Fehler')
 
-      if (newEmail === '' || newEmail === null || newEmail === undefined) {
-        window.f7.addNotification({
-          title: 'Abgebrochen',
-          message: 'Der Vorgang wurde abgebrochen ',
-          hold: 3000,
-          closeIcon: false
-        })
+          return
+        }
 
-        return
-      }
-
-      if (this.validateEmail(newEmail) !== true) {
-        window.f7.alert('Bitte gib eine gültige Email-Adresse an!', 'Fehler')
-
-        return
-      }
-
-      if (newEmail === null || newEmail === '' || window.confirm('Wirklich ändern?') !== true) {
-        window.f7.addNotification({
-          title: 'Abgebrochen',
-          message: 'Der Vorgang wurde abgebrochen ',
-          hold: 3000,
-          closeIcon: false
-        })
-      } else {
         var user = window.firebase.auth().currentUser
 
         user.updateEmail(newEmail).then(function () {
-          window.f7.alert('Email wurde geändert!', 'Erfolg')
+          window.f7.alert('Email wurde geändert!', '⚙️ Erfolg')
           setTimeout(function () { window.location.reload() }, 1500)
         }).catch(function (error) {
-          window.f7.alert(error, 'Fehler')
+          window.f7.alert(error, '⚙️ Fehler')
         })
-      }
+      })
+
+      // if (newEmail === '' || newEmail === null || newEmail === undefined) {
+      //   window.f7.addNotification({
+      //     title: 'Abgebrochen',
+      //     message: '⚙️ Der Vorgang wurde abgebrochen ',
+      //     hold: 3000,
+      //     closeIcon: false
+      //   })
+      //
+      //   return
+      // }
     },
 
     checkSettings: function () {
@@ -497,7 +486,7 @@ export default {
           bigtext: 'false'
         })
 
-        window.f7.alert('Bitte Lade die Seite neu', 'Einstellungen wurden nicht richtig konfiguriert')
+        window.f7.alert('Bitte Lade die Seite neu', '⚙️ Einstellungen wurden nicht richtig konfiguriert')
       })
     },
 
@@ -515,9 +504,13 @@ export default {
 
                         </p>
 
+
+
                         <p><a href="#" class="popup-close close-popup"><i class="material-icons">close</i></a></p>
 
                     </div>
+
+                    <hr />
 
                     <p class='popup-text'>
 
@@ -532,7 +525,7 @@ export default {
 
       var i = this.items.length - 1
       while (i >= 0) {
-        popupHTML += '<li><b>' + this.items[i].version + '</b> - <span style="color: #999">' + this.items[i].date + '</span>' + this.items[i].changes + '</li><br />'
+        popupHTML += '<li><b style="color: #25a69a;">' + this.items[i].version + '</b> - <span style="color: #999">' + this.items[i].date + '</span>' + this.items[i].changes + '</li><br />'
         i--
       }
 
@@ -565,6 +558,8 @@ export default {
 
                       </div>
 
+                      <hr />
+
                       <p class='popup-text'>
 
                           <ul>
@@ -578,7 +573,7 @@ export default {
 
       var i = this.itemsPF.length - 1
       while (i >= 0) {
-        popupHTML += '<li><b>' + this.itemsPF[i].feature + '</b></li>'
+        popupHTML += '<li>' + this.itemsPF[i].feature + '</li><br />'
         i--
       }
 
@@ -613,10 +608,13 @@ export default {
 
                     </div>
 
-                    <p class='popup-text'>
-                        Wenn du ein Problem mit der App hast oder du einen Fehler gefunden hast, kannst du uns eine Email an folgende Adresse schreiben: <br /><b>` + this.supportEmail + `</b>
-                        <br /><br />
-                        <a style="padding: 12px 16px; color: white; background-color: #444; border-radius: 3px;" onclick="window.location.href = 'mailto:support.app@ev-g-m.de'">Email schicken</a>
+                    <hr />
+                    <br />
+
+                    <p class='popup-text' style="text-align: center;">
+                        Wenn du ein Problem mit der App hast oder du einen Fehler gefunden hast, kannst du uns eine Email an folgende Adresse schreiben: <br /><br /><b>` + this.supportEmail + `</b>
+                        <br /><br /><br />
+                        <a style="padding: 12px 16px; color: white; background-color: #f44336; border-radius: 3px; margin: 0 auto;" onclick="window.location.href = 'mailto:support.app@ev-g-m.de'">Email schicken</a>
                     </p>
 
                 </div>
