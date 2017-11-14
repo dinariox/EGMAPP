@@ -153,13 +153,23 @@
         },
 
         pushItems: function (cnt, self, mitteilungen) {
-          self.$root.store('default-teaser-icons/' + mitteilungen[cnt].icon + '.png').getDownloadURL().then(function (url) {
+          if (mitteilungen[cnt].deleted === true) {
+            if (cnt === 1) {
+              window.f7.hideIndicator()
+              return
+            }
+            return self.pushItems(cnt - 1, self, mitteilungen)
+                  // Niemals Artikel löschen, sondern deleted = true
+          }
+
+          var iconName = mitteilungen[cnt].icon || '0-purple'
+          self.$root.store('default-teaser-icons/' + iconName + '.png').getDownloadURL().then(function (url) {
             self.items.push({
 
-              title: mitteilungen[cnt].titel,
-              text: mitteilungen[cnt].text,
-              textshort: mitteilungen[cnt].text.replace(/<\/?[^>]+(>|$)/g, ''), // HTML Tags werden gelöscht
-              date: mitteilungen[cnt].datum,
+              title: mitteilungen[cnt].titel || 'Fehler',
+              text: mitteilungen[cnt].text || 'Fehler',
+              textshort: mitteilungen[cnt].text.replace(/<\/?[^>]+(>|$)/g, '') || 'Fehler', // HTML Tags werden gelöscht
+              date: mitteilungen[cnt].datum || 'Fehler',
               icon: url,
               image: mitteilungen[cnt].image
 

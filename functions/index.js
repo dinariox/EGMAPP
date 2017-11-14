@@ -93,6 +93,7 @@ app.post('/planupload', function(request, response){
 				vertretungsplaene[index].Plan = "";
 			}else{
 				vertretungsplaene[index].Plan = "<strong>" + privateplan.substring(positionenfiltered[cnt], positionenfiltered[cnt+1]);
+				console.log("Plan für Kurs \"" + name + "\": " + vertretungsplaene[index].Plan);
 				cnt++;
 			}
 		});
@@ -121,6 +122,8 @@ app.post('/planupload', function(request, response){
 				plaenepost[index] = nofree;
 			}
 		});
+
+		console.log("Fertige Pläne:", plaenepost)
 
 	    updates['/vertretungsplan/' + day + '/5'] = plaenepost[0];
 		updates['/vertretungsplan/' + day + '/6'] = plaenepost[1];

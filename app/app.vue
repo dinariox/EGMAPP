@@ -119,12 +119,53 @@
 
     }
 
+    .text {
+
+        padding: 10px 16px;
+
+    }
+
+    .mini-icons {
+
+        font-size: 15pt;
+
+        position: relative;
+        bottom: -3.5px;
+
+    }
+
+    .button-icons {
+
+        font-size: 16pt;
+
+        position: relative;
+        bottom: -7px;
+
+    }
+
+    .click-links {
+
+        cursor: pointer;
+        user-select: none;
+        padding: 3px;
+        border-radius: 10px;
+        color: #3f51b5;
+
+    }
+
+    .click-links:hover {
+
+        background-color: #e2e2e2;
+
+    }
+
 </style>
 
 <template>
 
   <!-- App -->
   <div id="app">
+
 
     <!-- Statusbar -->
     <f7-statusbar></f7-statusbar>
@@ -152,12 +193,26 @@
                 <f7-list-item link="/sv/" title="<i class='material-icons m-i'>portrait</i>&nbsp;&nbsp;&nbsp; SV" link-view="#main-view" link-close-panel></f7-list-item>
                 <!-- <f7-list-item link="/sharens/" title="<i class='material-icons m-i'>loyalty</i>&nbsp;&nbsp;&nbsp; Sharens" link-view="#main-view" link-close-panel></f7-list-item> -->
 
+                <f7-list-item v-if="adminLevel === 'lehrer' || adminLevel === 'bearbeiter' || adminLevel === 'admin'" title="App Verwaltung" divider></f7-list-item>
+
+                <f7-list-item v-if="adminLevel === 'lehrer' || adminLevel === 'bearbeiter' || adminLevel === 'admin'" link="/admininfo/" title="<i class='material-icons m-i'>code</i>&nbsp;&nbsp;&nbsp; Info" link-view="#main-view" link-close-panel></f7-list-item>
+                <f7-list-item v-if="adminLevel === 'lehrer' || adminLevel === 'bearbeiter' || adminLevel === 'admin'" link="/adminnews/" title="<i class='material-icons m-i'>code</i>&nbsp;&nbsp;&nbsp; News verwalten" link-view="#main-view" link-close-panel></f7-list-item>
+                <f7-list-item v-if="adminLevel === 'lehrer' || adminLevel === 'bearbeiter' || adminLevel === 'admin'" link="/adminsv/" title="<i class='material-icons m-i'>code</i>&nbsp;&nbsp;&nbsp; SV verwalten" link-view="#main-view" link-close-panel></f7-list-item>
+                <f7-list-item v-if="adminLevel === 'bearbeiter' || adminLevel === 'admin'" link="/adminschulleitung/" title="<i class='material-icons m-i'>code</i>&nbsp;&nbsp;&nbsp; Schulleitung verwalten" link-view="#main-view" link-close-panel></f7-list-item>
+                <!-- <f7-list-item v-if="adminLevel === 'lehrer' || adminLevel === 'bearbeiter' || adminLevel === 'admin'" link="/adminkalender/" title="<i class='material-icons m-i'>code</i>&nbsp;&nbsp;&nbsp; Kalender verwalten" link-view="#main-view" link-close-panel></f7-list-item> -->
+                <f7-list-item v-if="adminLevel === 'admin'" link="/adminmensa/" title="<i class='material-icons m-i'>code</i>&nbsp;&nbsp;&nbsp; Mensa verwalten" link-view="#main-view" link-close-panel></f7-list-item>
+                <!-- <f7-list-item v-if="adminLevel === 'lehrer' || adminLevel === 'bearbeiter' || adminLevel === 'admin'" link="/adminstufenbrett/" title="<i class='material-icons m-i'>code</i>&nbsp;&nbsp;&nbsp; Stufenbrett verwalten" link-view="#main-view" link-close-panel></f7-list-item>
+                <f7-list-item v-if="adminLevel === 'admin'" link="/admindieapp/" title="<i class='material-icons m-i'>code</i>&nbsp;&nbsp;&nbsp; Die App verwalten" link-view="#main-view" link-close-panel></f7-list-item>
+                <f7-list-item v-if="adminLevel === 'admin'" link="/adminueberuns/" title="<i class='material-icons m-i'>code</i>&nbsp;&nbsp;&nbsp; Über uns verwalten" link-view="#main-view" link-close-panel></f7-list-item>
+                <f7-list-item v-if="adminLevel === 'admin'" link="/adminimpressum/" title="<i class='material-icons m-i'>code</i>&nbsp;&nbsp;&nbsp; Impressum verwalten" link-view="#main-view" link-close-panel></f7-list-item>
+                <f7-list-item v-if="adminLevel === 'admin'" link="/adminsonstiges/" title="<i class='material-icons m-i'>code</i>&nbsp;&nbsp;&nbsp; Sonstiges verwalten" link-view="#main-view" link-close-panel></f7-list-item> -->
+
                 <f7-list-item title="Sonstiges" divider></f7-list-item>
 
                 <f7-list-item link="/dieapp/" title="<i class='material-icons m-i'>help_outline</i>&nbsp;&nbsp;&nbsp; Die App" link-view="#main-view" link-close-panel></f7-list-item>
                 <f7-list-item link="/ueberuns/" title="<i class='material-icons m-i'>people</i>&nbsp;&nbsp;&nbsp; Über uns" link-view="#main-view" link-close-panel></f7-list-item>
                 <f7-list-item link="/impressum/" title="<i class='material-icons m-i'>info_outline</i>&nbsp;&nbsp;&nbsp; Impressum" link-view="#main-view" link-close-panel></f7-list-item>
-                <f7-list-item link="/einstellungen/" title="<i class='material-icons m-i'>widgets</i>&nbsp;&nbsp;&nbsp; Einstellungen" link-view="#main-view" link-close-panel></f7-list-item>
+                <f7-list-item link="/einstellungen/" title="<i class='material-icons m-i'>settings</i>&nbsp;&nbsp;&nbsp; Einstellungen" link-view="#main-view" link-close-panel></f7-list-item>
                 <f7-list-item @click="handleSignOut" title="<i class='material-icons m-i'>power_settings_new</i>&nbsp;&nbsp;&nbsp; Abmelden" link-view="#main-view" link-close-panel></f7-list-item>
 
             </f7-list>
@@ -322,8 +377,10 @@ let text = {
 
 export default {
   data () {
+    var adminLevel = ''
     var appVersion = ''
     this.checkAppVersion()
+    this.checkAdminLevel()
 
     return {
       loggedin: this.checklogin(),
@@ -335,7 +392,8 @@ export default {
       passwordConfirmation: '',
       stufenPassword: '',
       mode: 'signIn',
-      appVersion: appVersion
+      appVersion: appVersion,
+      adminLevel: adminLevel
     }
   },
 
@@ -349,6 +407,40 @@ export default {
   },
 
   methods: {
+
+    checkAdminLevel: function () {
+      if (!this.$root.user) {
+        return
+      }
+
+      var self = this
+      var stufenZahl
+
+      this.$root.db('users/' + this.$root.user.uid).once('value').then(function (snapshot) {
+        var userStats = snapshot.val()
+
+        stufenZahl = userStats.stufe
+
+        if (stufenZahl !== 13 && stufenZahl !== 14 && stufenZahl !== 15) {
+          self.adminLevel = 'none'
+          return
+        }
+
+        switch (stufenZahl) {
+
+          case 13:
+            self.adminLevel = 'lehrer'
+            break
+          case 14:
+            self.adminLevel = 'bearbeiter'
+            break
+          case 15:
+            self.adminLevel = 'admin'
+            break
+
+        }
+      })
+    },
 
     checklogin: function () {
       if (this.$root.user) {
@@ -371,7 +463,7 @@ export default {
     },
 
     checkAppVersion: function () {
-      var CURRENT_APP_VERSION = '1.6.0'
+      var CURRENT_APP_VERSION = '1.7.8'
       window.sessionStorage.setItem('appVersion', CURRENT_APP_VERSION)
 
       this.appVersion = CURRENT_APP_VERSION

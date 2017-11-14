@@ -382,6 +382,15 @@
         },
 
         pushItems: function (cnt, self, mitteilungen) {
+          if (mitteilungen[cnt].deleted === true) {
+            if (cnt === 1) {
+              window.f7.hideIndicator()
+              return
+            }
+            return self.pushItems(cnt - 1, self, mitteilungen)
+                  // Niemals Artikel löschen, sondern deleted = true
+          }
+    
           self.$root.store('default-teaser-icons/' + mitteilungen[cnt].icon + '.png').getDownloadURL().then(function (url) {
             self.items.push({
 

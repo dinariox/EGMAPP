@@ -31,3 +31,6 @@ database-backup.json
 ftp-config.json
 
 BACKUP/
+node_modules_alt/
+node_modules_alt_14.11.2017/
+snapshots_old/

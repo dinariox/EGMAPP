@@ -1,14 +1,51 @@
 {
   "rules": {
     "users": {
-      ".read": true,
-      ".write": false
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
     },
     "vertretungsplan": {
       ".read": true
     },
+    "schulleitung": {
+      ".read": true,
+      ".write": true
+    },
+    "sv": {
+      ".read": true,
+      ".write": true
+    },
+    "news": {
+      ".read": true,
+      ".write": true
+    },
     "changelog": {
       ".read": true
+    },
+    "plannedFeatures": {
+      ".read": true
+    },
+    "willkommenstexte": {
+      ".read": true
+    },
+    "settings": {
+      ".read": true,
+      ".write": true
+    },
+    "APP_VERSION": {
+      ".read": true
+    },
+    "calendar": {
+      ".read": true
+    },
+    "adminPermissions": {
+      ".read": true
+    },
+    "log": {
+      ".read": true,
+      ".write": true
     }
   }
 }

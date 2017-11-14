@@ -1,12 +1,12 @@
 {
   "name": "EGM-App",
-  "version": "1.6.0",
+  "version": "1.7.8",
   "devDependencies": {
-    "app-framework": "^1.13.3",
+    "app-framework": "^1.19.4",
     "fetch": "^1.1.0",
     "material-design-icons": "^3.0.1",
     "pdfjs-dist": "^1.8.456",
-    "request": "^2.81.0",
+    "request": "^2.83.0",
     "vue-pdf": "^1.2.2",
     "xhr": "^2.4.0"
   },
@@ -31,5 +31,9 @@
     "studio": "node node_modules/app-framework/scripts/cordova --studio",
     "xcode": "node node_modules/app-framework/scripts/cordova --xcode",
     "zip": "node node_modules/app-framework/scripts/deprecated"
+  },
+  "dependencies": {
+    "eslint": "^4.10.0",
+    "vue-template-compiler": "^2.5.3"
   }
 }

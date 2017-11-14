@@ -164,9 +164,7 @@ export default {
         plan += await this.$root.db('/vertretungsplan/' + day + '/' + stufe).once('value').then(function (snapshot) { return (snapshot.val()) })
 
         // Zur Sicherheit als String und als Integer abfragen
-        if (stufe === '13' || stufe === 13) {
-          console.log('Stufe 13 (Lehrer)')
-
+        if (stufe === '13' || stufe === 13 || stufe === '14' || stufe === 14 || stufe === '15' || stufe === 15) {
           plan = ''
 
           for (var i = 5; i <= 12; i++) {

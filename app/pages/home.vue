@@ -329,6 +329,10 @@
             var mitteilungen = snapshot.val()
             var anzahlMitteilungen = mitteilungen.length - 1
 
+            while (mitteilungen[anzahlMitteilungen].deleted === true) {
+              anzahlMitteilungen--
+            }
+
             self.$root.store('default-teaser-icons/' + mitteilungen[anzahlMitteilungen].icon + '.png').getDownloadURL().then(function (url) {
               self.itemsHP = []
               self.itemsHP.push({
@@ -347,6 +351,10 @@
             var mitteilungen = snapshot.val()
             var anzahlMitteilungen = mitteilungen.length - 1
 
+            while (mitteilungen[anzahlMitteilungen].deleted === true) {
+              anzahlMitteilungen--
+            }
+
             self.$root.store('default-teaser-icons/' + mitteilungen[anzahlMitteilungen].icon + '.png').getDownloadURL().then(function (url) {
               self.itemsSV = []
               self.itemsSV.push({
@@ -364,6 +372,10 @@
           this.$root.db('schulleitung').once('value').then(function (snapshot) {
             var mitteilungen = snapshot.val()
             var anzahlMitteilungen = mitteilungen.length - 1
+
+            while (mitteilungen[anzahlMitteilungen].deleted === true) {
+              anzahlMitteilungen--
+            }
 
             self.$root.store('default-teaser-icons/' + mitteilungen[anzahlMitteilungen].icon + '.png').getDownloadURL().then(function (url) {
               self.itemsSL = []

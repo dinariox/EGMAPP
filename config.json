@@ -1,0 +1,57 @@
+{
+  "title": "EGM-App",
+  "language": "de",
+  "theme": "material",
+  "color": "indigo",
+  "layout": "default",
+  "statusbarVisibility": true,
+  "statusbarTextColor": "white",
+  "statusbarBackgroundColor": "#000000",
+  "changeStatusbarBackgroundColorOnThemeColorChange": true,
+  "iconBackgroundColor": "#ffffff",
+  "useIconFonts": {
+    "framework7": false,
+    "material": false,
+    "ion": false,
+    "fontawesome": false
+  },
+  "limitApplicationWidth": 1920,
+  "limitApplicationHeight": 1080,
+  "showPhoneFrameOnDesktop": false,
+  "framework7parameters": {
+    "swipePanel": "left"
+  },
+  "materialSubnavbarFix": true,
+  "completeRoutesFile": true,
+  "firebase": {
+    "apiKey": "AIzaSyAZ0zoz0u44H7ugKsPKpTJTnBisqi9oHCE",
+    "authDomain": "egm-app.firebaseapp.com",
+    "databaseURL": "https://egm-app.firebaseio.com",
+    "storageBucket": "egm-app.appspot.com",
+    "projectId": "egm-app",
+    "allowEmailLogin": true,
+    "allowEmailRegistration": true
+  },
+  "devFirebase": {
+    "deployDevRulesOnTesting": false,
+    "apiKey": "AIzaSyAZ0zoz0u44H7ugKsPKpTJTnBisqi9oHCE",
+    "authDomain": "egm-app.firebaseapp.com",
+    "databaseURL": "https://egm-app.firebaseio.com",
+    "storageBucket": "egm-app.appspot.com",
+    "projectId": "egm-app",
+    "allowEmailLogin": true,
+    "allowEmailRegistration": true
+  },
+  "appStoreId": "de.egmapp",
+  "playStoreId": "de.egmapp",
+  "useCordovaPlugins": [
+    "cordova-plugin-statusbar",
+    "cordova-plugin-whitelist"
+  ],
+  "resetLocalStorageOnVersionChange": false,
+  "preloadImages": true,
+  "buildSourcemaps": false,
+  "fixCodeOnTest": true,
+  "fixCodeOnBuild": true,
+  "devServerPort": "8080"
+}

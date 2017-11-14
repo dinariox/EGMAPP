@@ -161,7 +161,7 @@
         </p>
 
         <p class="profile-stufe" v-bind:style="{ fontSize: bigtextSize }">
-            <span v-if="userStufe!=13">Stufe {{userStufe}}</span><span v-if="userStufe==13">Lehrerkonto</span>
+            <span v-if="userStufe<13">Stufe {{userStufe}}</span><span v-if="userStufe==13">Lehrerkonto</span><span v-if="userStufe==14">Bearbeiterkonto</span><span v-if="userStufe==15">Adminkonto</span>
         </p>
 
         <div class="profile-reset-wrapper">
@@ -393,7 +393,7 @@ export default {
         return
       }
 
-      window.f7.confirm('Möchtest du wirklich dein Passwort zurücksetzen?\n(Dir wird eine Email mit einem Reset-Link zugesendet)', () => {
+      window.f7.confirm('Möchtest du wirklich dein Passwort zurücksetzen?<br />(Dir wird eine Email mit einem Reset-Link zugesendet)', () => {
             // Show loading indicator
         window.f7.showIndicator()
             // Send reset link

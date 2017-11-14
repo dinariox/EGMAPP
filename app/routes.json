@@ -1,5 +1,25 @@
 [
   {
+    "path": "/admininfo/",
+    "component": "admininfo.vue"
+  },
+  {
+    "path": "/adminmensa/",
+    "component": "adminmensa.vue"
+  },
+  {
+    "path": "/adminnews/",
+    "component": "adminnews.vue"
+  },
+  {
+    "path": "/adminschulleitung/",
+    "component": "adminschulleitung.vue"
+  },
+  {
+    "path": "/adminsv/",
+    "component": "adminsv.vue"
+  },
+  {
     "path": "/dieapp/",
     "component": "dieapp.vue"
   },

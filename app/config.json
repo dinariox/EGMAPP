@@ -1,7 +1,6 @@
 {
   "title": "EGM-App",
-  "defaultLanguage": "de",
-  "defaultLanguageFallback": false,
+  "language": "de",
   "theme": "material",
   "color": "indigo",
   "layout": "default",
@@ -23,7 +22,6 @@
   },
   "materialSubnavbarFix": true,
   "restoreHistory": true,
-  "restoreComponentData": true,
   "completeRoutesFile": true,
   "firebase": {
     "apiKey": "AIzaSyAZ0zoz0u44H7ugKsPKpTJTnBisqi9oHCE",
@@ -56,7 +54,7 @@
   "resetLocalStorageOnVersionChange": false,
   "preloadImages": true,
   "buildSourcemaps": false,
-  "fixCodeOnTest": true,
+  "fixCodeOnTest": false,
   "fixCodeOnBuild": true,
   "devServerPort": "8080"
 }
